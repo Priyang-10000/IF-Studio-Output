@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Natural Gas — Global Energy Infographic</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #070d1a;
+    --surface: #0d1b2e;
+    --card: #0f2236;
+    --border: #1a3a5c;
+    --accent1: #00d4ff;
+    --accent2: #00ff9d;
+    --accent3: #ff6b35;
+    --accent4: #a855f7;
+    --accent5: #ffd700;
+    --text: #e2eaf4;
+    --muted: #6a8aaa;
+    --grid: rgba(0,212,255,0.04);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #070d1a 0%, #0a1628 50%, #071520 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(0,212,255,0.07) 0%, transparent 70%);
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent1) 60%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .header p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ── FLAME SVG ILLUSTRATION ── */
+  .flame-illus { flex-shrink: 0; }
+
+  /* ── HERO STATS ── */
+  .hero-stats {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 40px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .stat-card:nth-child(1)::before { background: var(--accent1); }
+  .stat-card:nth-child(2)::before { background: var(--accent2); }
+  .stat-card:nth-child(3)::before { background: var(--accent3); }
+  .stat-card:nth-child(4)::before { background: var(--accent4); }
+  .stat-icon { font-size: 24px; margin-bottom: 12px; }
+  .stat-value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-card:nth-child(1) .stat-value { color: var(--accent1); }
+  .stat-card:nth-child(2) .stat-value { color: var(--accent2); }
+  .stat-card:nth-child(3) .stat-value { color: var(--accent3); }
+  .stat-card:nth-child(4) .stat-value { color: var(--accent4); }
+  .stat-label { font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; }
+  .stat-sub { font-size: 11px; color: var(--muted); margin-top: 6px; opacity: 0.7; }
+
+  /* ── MAIN GRID ── */
+  .main-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .chart-card.full-width { grid-column: 1 / -1; }
+  .chart-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,212,255,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .card-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent1);
+    margin-bottom: 6px;
+  }
+  .card-subtitle {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 28px;
+  }
+
+  /* ── VBAR CHART ── */
+  .vbar-wrap { overflow-x: auto; }
+  .vbar-group { display: flex; align-items: flex-end; gap: 12px; height: 200px; padding-bottom: 40px; position: relative; }
+  .vbar-group::before {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+  .vbar-item { display: flex; flex-direction: column; align-items: center; gap: 0; flex: 1; min-width: 50px; }
+  .vbar-bar {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+    transition: opacity 0.2s;
+    min-height: 4px;
+  }
+  .vbar-val {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text);
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+  .vbar-label {
+    margin-top: 8px;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ── HBAR CHART ── */
+  .hbar-list { display: flex; flex-direction: column; gap: 14px; }
+  .hbar-item { display: grid; grid-template-columns: 120px 1fr 70px; align-items: center; gap: 14px; }
+  .hbar-name { font-size: 12px; font-weight: 600; color: var(--text); text-align: right; }
+  .hbar-track { background: rgba(255,255,255,0.06); border-radius: 6px; height: 10px; overflow: hidden; }
+  .hbar-fill { height: 100%; border-radius: 6px; }
+  .hbar-pct { font-size: 12px; font-weight: 700; }
+
+  /* ── DONUT ── */
+  .donut-wrap { display: flex; align-items: center; gap: 40px; }
+  .donut-legend { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .legend-item { display: flex; align-items: center; gap: 10px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { font-size: 13px; color: var(--text); flex: 1; }
+  .legend-pct { font-size: 13px; font-weight: 700; }
+
+  /* ── LINE CHART ── */
+  .line-chart-wrap { position: relative; }
+  .line-y-labels { position: absolute; left: 0; top: 0; bottom: 30px; display: flex; flex-direction: column; justify-content: space-between; }
+  .line-y-label { font-size: 10px; color: var(--muted); }
+  .line-svg-area { margin-left: 48px; }
+  .line-x-labels { display: flex; justify-content: space-between; margin-left: 48px; margin-top: 8px; }
+  .line-x-label { font-size: 10px; color: var(--muted); }
+
+  /* ── USES SECTION ── */
+  .uses-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .use-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .use-pct {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    margin: 10px 0 6px;
+  }
+  .use-label { font-size: 11px; color: var(--muted); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  .footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 40px 48px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-title { font-size: 11px; font-weight: 700; color: var(--accent1); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .footer-sources { font-size: 11px; color: var(--muted); line-height: 1.8; }
+
+  @media (max-width: 900px) {
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .main-grid { grid-template-columns: 1fr; }
+    .chart-card.full-width { grid-column: 1; }
+    .header-inner { grid-template-columns: 1fr; }
+    .uses-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <div>
+      <div class="header-badge">
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="var(--accent1)"/></svg>
+        Global Energy Report · 2024
+      </div>
+      <h1>NATURAL GAS</h1>
+      <p>The world's third-largest energy source powers homes, industry & electricity generation — bridging fossil fuels and the clean energy transition while shaping geopolitics and climate policy worldwide.</p>
+    </div>
+    <!-- Flame SVG Illustration -->
+    <div class="flame-illus">
+      <svg width="180" height="220" viewBox="0 0 180 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glowBase" cx="50%" cy="100%" r="50%">
+            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <linearGradient id="flame1" x1="90" y1="200" x2="90" y2="20" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ff6b35"/>
+            <stop offset="40%" stop-color="#ffd700"/>
+            <stop offset="80%" stop-color="#fff"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+          <linearGradient id="flame2" x1="90" y1="180" x2="90" y2="60" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#ff6b35" stop-opacity="0.8"/>
+            <stop offset="60%" stop-color="#00d4ff" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
+          </linearGradient>
+          <filter id="blur1">
+            <feGaussianBlur stdDeviation="6"/>
+          </filter>
+        </defs>
+        <!-- Glow base -->
+        <ellipse cx="90" cy="200" rx="70" ry="18" fill="url(#glowBase)" filter="url(#blur1)"/>
+        <!-- Outer flame -->
+        <path d="M90 200 C50 180 30 140 45 100 C55 70 40 50 55 30 C60 22 68 18 70 30 C72 42 60 55 70 70 C78 82 90 60 88 40 C86 22 95 10 100 25 C108 45 95 70 105 90 C115 108 140 120 135 150 C130 175 115 185 90 200 Z" fill="url(#flame1)" opacity="0.9"/>
+        <!-- Inner flame -->
+        <path d="M90 195 C65 178 55 150 65 120 C72 100 62 80 72 65 C76 58 80 58 82 68 C84 78 76 92 84 104 C90 114 96 98 95 82 C94 68 100 58 104 70 C110 88 100 112 108 130 C116 148 128 158 122 178 C116 192 105 196 90 195 Z" fill="url(#flame2)" opacity="0.8"/>
+        <!-- Pipe at bottom -->
+        <rect x="70" y="198" width="40" height="14" rx="4" fill="#1a3a5c"/>
+        <rect x="55" y="208" width="70" height="10" rx="5" fill="#0d2840"/>
+        <!-- Pipe glow -->
+        <ellipse cx="90" cy="205" rx="30" ry="5" fill="#ff6b35" opacity="0.3" filter="url(#blur1)"/>
+        <!-- Molecules floating -->
+        <circle cx="30" cy="80" r="5" fill="none" stroke="#00d4ff" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="30" cy="80" r="2" fill="#00d4ff" opacity="0.5"/>
+        <circle cx="148" cy="100" r="4" fill="none" stroke="#00ff9d" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="148" cy="100" r="1.5" fill="#00ff9d" opacity="0.4"/>
+        <circle cx="22" cy="140" r="3" fill="none" stroke="#ffd700" stroke-width="1" opacity="0.4"/>
+        <circle cx="155" cy="60" r="3" fill="none" stroke="#ff6b35" stroke-width="1" opacity="0.5"/>
+        <!-- CH4 label -->
+        <text x="90" y="145" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="18" font-weight="900" fill="white" opacity="0.15">CH₄</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════ HERO STATS ═══════════════════════════════════ -->
+<section class="hero-stats">
+  <div class="stat-card">
+    <div class="stat-icon">⛽</div>
+    <div class="stat-value">4,037</div>
+    <div class="stat-label">BCM Produced in 2023</div>
+    <div class="stat-sub">Billion cubic metres globally</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">🌍</div>
+    <div class="stat-value">23%</div>
+    <div class="stat-label">Share of World Energy</div>
+    <div class="stat-sub">Global primary energy mix</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📦</div>
+    <div class="stat-value">188.8</div>
+    <div class="stat-label">TCM Proven Reserves</div>
+    <div class="stat-sub">Trillion cubic metres, 2023</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon">📅</div>
+    <div class="stat-value">~48 yrs</div>
+    <div class="stat-label">Reserve-to-Production Ratio</div>
+    <div class="stat-sub">At current consumption rates</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ MAIN GRID ═══════════════════════════════════ -->
+<main class="main-grid">
+
+  <!-- ── CHART 1: Top Producers VBAR ── -->
+  <div class="chart-card">
+    <div class="card-title">Vertical Bar Chart</div>
+    <div class="card-subtitle">Top 8 Natural Gas Producers (BCM, 2023)</div>
+    <div class="vbar-wrap">
+      <div class="vbar-group" id="vbarGroup"></div>
+    </div>
+    <svg width="0" height="0" style="position:absolute">
+      <defs>
+        <linearGradient id="vg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#005f80"/></linearGradient>
+        <linearGradient id="vg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00ff9d"/><stop offset="100%" stop-color="#007040"/></linearGradient>
+        <linearGradient id="vg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff6b35"/><stop offset="100%" stop-color="#7a2e10"/></linearGradient>
+        <linearGradient id="vg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#4a1580"/></linearGradient>
+        <linearGradient id="vg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd700"/><stop offset="100%" stop-color="#7a6000"/></linearGradient>
+        <linearGradient id="vg6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#004055"/></linearGradient>
+        <linearGradient id="vg7" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff6b35"/><stop offset="100%" stop-color="#501e07"/></linearGradient>
+        <linearGradient id="vg8" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00ff9d"/><stop offset="100%" stop-color="#003d22"/></linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- ── CHART 2: Composition DONUT ── -->
+  <div class="chart-card">
+    <div class="card-title">Donut Chart</div>
+    <div class="card-subtitle">Natural Gas Composition (Typical)</div>
+    <div class="donut-wrap">
+      <svg width="180" height="180" viewBox="0 0 180 180">
+        <defs>
+          <filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Donut segments via stroke-dasharray on circles -->
+        <!-- Total circumference for r=72: 2π×72 ≈ 452.4 -->
+        <!-- CH4: 90% → 407.2 -->
+        <circle cx="90" cy="90" r="72" fill="none" stroke="#00d4ff" stroke-width="22"
+          stroke-dasharray="407.2 45.2" stroke-dashoffset="113.1" filter="url(#glow2)" opacity="0.9"/>
+        <!-- Ethane: 5% → 22.6 -->
+        <circle cx="90" cy="90" r="72" fill="none" stroke="#00ff9d" stroke-width="22"
+          stroke-dasharray="22.6 429.8" stroke-dashoffset="-294.1"/>
+        <!-- Propane: 2% → 9.0 -->
+        <circle cx="90" cy="90" r="72" fill="none" stroke="#ffd700" stroke-width="22"
+          stroke-dasharray="9.0 443.4" stroke-dashoffset="-316.7"/>
+        <!-- Butane: 1% → 4.5 -->
+        <circle cx="90" cy="90" r="72" fill="none" stroke="#ff6b35" stroke-width="22"
+          stroke-dasharray="4.5 447.9" stroke-dashoffset="-325.7"/>
+        <!-- CO2+N2: 2% → 9.0 -->
+        <circle cx="90" cy="90" r="72" fill="none" stroke="#a855f7" stroke-width="22"
+          stroke-dasharray="9.0 443.4" stroke-dashoffset="-330.2"/>
+        <!-- Center label -->
+        <text x="90" y="85" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="22" font-weight="900" fill="white">CH₄</text>
+        <text x="90" y="104" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="#6a8aaa">Methane</text>
+      </svg>
+      <div class="donut-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#00d4ff"></div>
+          <span class="legend-label">Methane (CH₄)</span>
+          <span class="legend-pct" style="color:#00d4ff">90%</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#00ff9d"></div>
+          <span class="legend-label">Ethane (C₂H₆)</span>
+          <span class="legend-pct" style="color:#00ff9d">5%</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#ffd700"></div>
+          <span class="legend-label">Propane (C₃H₈)</span>
+          <span class="legend-pct" style="color:#ffd700">2%</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#ff6b35"></div>
+          <span class="legend-label">Butane (C₄H₁₀)</span>
+          <span class="legend-pct" style="color:#ff6b35">1%</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#a855f7"></div>
+          <span class="legend-label">CO₂ &amp; N₂</span>
+          <span class="legend-pct" style="color:#a855f7">2%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHART 3: LINE CHART — Global Consumption ── -->
+  <div class="chart-card full-width">
+    <div class="card-title">Line Chart</div>
+    <div class="card-subtitle">Global Natural Gas Consumption Trend (BCM, 2000–2023)</div>
+    <div class="line-chart-wrap">
+      <div class="line-y-labels">
+        <span class="line-y-label">4,200</span>
+        <span class="line-y-label">3,800</span>
+        <span class="line-y-label">3,400</span>
+        <span class="line-y-label">3,000</span>
+        <span class="line-y-label">2,600</span>
+        <span class="line-y-label">2,200</span>
+      </div>
+      <div class="line-svg-area">
+        <svg width="100%" height="240" viewBox="0 0 1000 240" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineStroke" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#a855f7"/>
+              <stop offset="50%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#00ff9d"/>
+            </linearGradient>
+            <filter id="lineglow"><feGaussianBlur stdDeviation="3"/></filter>
+          </defs>
+          <!-- Grid lines -->
+          <line x1="0" y1="0" x2="1000" y2="0" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="48" x2="1000" y2="48" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="96" x2="1000" y2="96" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="144" x2="1000" y2="144" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <line x1="0" y1="192" x2="1000" y2="192" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+          <!-- Area fill -->
+          <!-- Points mapped: 2000=2400BCM, 2005=2720, 2010=3200, 2015=3550, 2019=3990, 2020=3850, 2021=4000, 2022=3960, 2023=4037 -->
+          <!-- Y range 2200-4200=2000 units over 240px. Scale=(240/2000)=0.12. Y=240 - (val-2200)*0.12 -->
+          <!-- 2400→216.0, 2720→192.0, 3200→156.0, 3550→132.0, 3990→107.2, 3850→117.0, 4000→106.4, 3960→109.2, 4037→104.0 -->
+          <!-- X: 0 to 1000 over 24 years (2000-2023), step=43.5 -->
+          <!-- Points: 2000=0,216 | 2003=130,200 | 2005=217,192 | 2008=348,170 | 2010=435,156 | 2013=565,140 | 2015=652,132 | 2017=739,118 | 2019=826,107 | 2020=870,117 | 2021=913,106 | 2022=956,109 | 2023=1000,104 -->
+          <path d="M0,216 C60,210 120,204 130,200 C160,196 200,194 217,192 C270,183 320,174 348,170 C390,163 415,160 435,156 C490,148 530,144 565,140 C600,137 630,134 652,132 C690,127 720,122 739,118 C780,112 810,109 826,107 L870,117 L913,106 L956,109 L1000,104 L1000,240 L0,240 Z"
+            fill="url(#lineGrad)"/>
+          <!-- Glow line -->
+          <path d="M0,216 C60,210 120,204 130,200 C160,196 200,194 217,192 C270,183 320,174 348,170 C390,163 415,160 435,156 C490,148 530,144 565,140 C600,137 630,134 652,132 C690,127 720,122 739,118 C780,112 810,109 826,107 L870,117 L913,106 L956,109 L1000,104"
+            fill="none" stroke="#00d4ff" stroke-width="6" opacity="0.3" filter="url(#lineglow)"/>
+          <!-- Main line -->
+          <path d="M0,216 C60,210 120,204 130,200 C160,196 200,194 217,192 C270,183 320,174 348,170 C390,163 415,160 435,156 C490,148 530,144 565,140 C600,137 630,134 652,132 C690,127 720,122 739,118 C780,112 810,109 826,107 L870,117 L913,106 L956,109 L1000,104"
+            fill="none" stroke="url(#lineStroke)" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Dots at key years -->
+          <circle cx="0" cy="216" r="5" fill="#a855f7" stroke="#070d1a" stroke-width="2"/>
+          <circle cx="435" cy="156" r="5" fill="#00d4ff" stroke="#070d1a" stroke-width="2"/>
+          <circle cx="826" cy="107" r="5" fill="#00ff9d" stroke="#070d1a" stroke-width="2"/>
+          <circle cx="870" cy="117" r="5" fill="#ff6b35" stroke="#070d1a" stroke-width="2"/>
+          <circle cx="1000" cy="104" r="5" fill="#ffd700" stroke="#070d1a" stroke-width="2"/>
+          <!-- Labels -->
+          <text x="0" y="207" font-family="Inter,sans-serif" font-size="10" fill="#a855f7" text-anchor="middle">2,400</text>
+          <text x="435" y="147" font-family="Inter,sans-serif" font-size="10" fill="#00d4ff" text-anchor="middle">3,200</text>
+          <text x="826" y="98" font-family="Inter,sans-serif" font-size="10" fill="#00ff9d" text-anchor="middle">3,990</text>
+          <text x="870" y="130" font-family="Inter,sans-serif" font-size="10" fill="#ff6b35" text-anchor="middle">COVID</text>
+          <text x="1000" y="95" font-family="Inter,sans-serif" font-size="10" fill="#ffd700" text-anchor="middle">4,037</text>
+        </svg>
+      </div>
+      <div class="line-x-labels">
+        <span class="line-x-label">2000</span>
+        <span class="line-x-label">2003</span>
+        <span class="line-x-label">2006</span>
+        <span class="line-x-label">2009</span>
+        <span class="line-x-label">2012</span>
+        <span class="line-x-label">2015</span>
+        <span class="line-x-label">2018</span>
+        <span class="line-x-label">2020</span>
+        <span class="line-x-label">2023</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHART 4: HBAR — Top Reserves ── -->
+  <div class="chart-card">
+    <div class="card-title">Horizontal Bar Chart</div>
+    <div class="card-subtitle">Countries by Proven Reserves (TCM)</div>
+    <div class="hbar-list" id="hbarList"></div>
+  </div>
+
+  <!-- ── CHART 5: Uses breakdown ── -->
+  <div class="chart-card">
+    <div class="card-title">Usage Breakdown</div>
+    <div class="card-subtitle">Global Natural Gas End-Use by Sector</div>
+    <div class="uses-grid">
+      <div class="use-item">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <rect x="8" y="18" width="24" height="18" rx="3" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+          <path d="M14 18 V12 Q20 4 26 12 V18" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+          <rect x="16" y="24" width="8" height="12" rx="1" fill="#00d4ff" opacity="0.3"/>
+          <circle cx="20" cy="10" r="3" fill="#00d4ff" opacity="0.6"/>
+        </svg>
+        <div class="use-pct" style="color:#00d4ff">29%</div>
+        <div class="use-label">Residential &amp; Commercial</div>
+      </div>
+      <div class="use-item">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <rect x="6" y="20" width="28" height="14" rx="2" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
+          <rect x="10" y="14" width="6" height="8" rx="1" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
+          <rect x="24" y="14" width="6" height="8" rx="1" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
+          <line x1="20" y1="6" x2="20" y2="14" stroke="#ff6b35" stroke-width="2"/>
+          <path d="M16 6 Q20 2 24 6" fill="none" stroke="#ff6b35" stroke-width="1.5"/>
+        </svg>
+        <div class="use-pct" style="color:#ff6b35">38%</div>
+        <div class="use-label">Power Generation</div>
+      </div>
+      <div class="use-item">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <circle cx="20" cy="20" r="14" fill="none" stroke="#00ff9d" stroke-width="1.5"/>
+          <path d="M14 20 L18 24 L26 16" stroke="#00ff9d" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="5" fill="#00ff9d" opacity="0.15"/>
+        </svg>
+        <div class="use-pct" style="color:#00ff9d">24%</div>
+        <div class="use-label">Industrial Processes</div>
+      </div>
+      <div class="use-item">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <path d="M8 30 Q10 20 16 18 Q20 16 20 12 Q22 6 26 8 Q30 12 24 18 Q28 18 30 24 L32 30" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+          <line x1="6" y1="32" x2="34" y2="32" stroke="#a855f7" stroke-width="1.5"/>
+        </svg>
+        <div class="use-pct" style="color:#a855f7">5%</div>
+        <div class="use-label">Transport (CNG/LNG)</div>
+      </div>
+      <div class="use-item">
+        <svg width="40" height="40" viewBox="0 0 40 40">
+          <circle cx="20" cy="18" r="10" fill="none" stroke="#ffd700" stroke-width="1.5"/>
+          <line x1="20" y1="8" x2="20" y2="28" stroke="#ffd700" stroke-width="1.5"/>
+          <line x1="10" y1="18" x2="30" y2="18" stroke="#ffd700" stroke-width="1.5"/>
+          <circle cx="20" cy="18" r="3" fill="#ffd700" opacity="0.5"/>
+          <line x1="20" y1="28" x2="20" y2="34" stroke="#ffd700" stroke-width="2"/>
+          <line x1="14" y1="34" x2="26" y2="34" stroke="#ffd700" stroke-width="2"/>
+        </svg>
+        <div class="use-pct" style="color:#ffd700">4%</div>
+        <div class="use-label">Other &amp; Losses</div>
+      </div>
+    </div>
+    <!-- Mini stacked bar -->
+    <div style="margin-top:28px;">
+      <div style="display:flex;height:14px;border-radius:8px;overflow:hidden;gap:2px;">
+        <div style="width:29%;background:#00d4ff;border-radius:8px 0 0 8px;"></div>
+        <div style="width:38%;background:#ff6b35;"></div>
+        <div style="width:24%;background:#00ff9d;"></div>
+        <div style="width:5%;background:#a855f7;"></div>
+        <div style="width:4%;background:#ffd700;border-radius:0 8px 8px 0;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--muted);">
+        <span>Residential 29%</span>
+        <span>Power 38%</span>
+        <span>Industrial 24%</span>
+        <span>Transport 5%</span>
+        <span>Other 4%</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-title">📚 Data Sources &amp; References</div>
+  <div class="footer-sources">
+    BP Statistical Review of World Energy 2023 — bp.com/statisticalreview &nbsp;|&nbsp;
+    International Energy Agency (IEA) — Gas Market Report 2023, iea.org &nbsp;|&nbsp;
+    U.S. Energy Information Administration (EIA) — Natural Gas Data, eia.gov &nbsp;|&nbsp;
+    OPEC Annual Statistical Bulletin 2023 — opec.org &nbsp;|&nbsp;
+    IGU World Gas Report 2023 — igu.org &nbsp;|&nbsp;
+    Our World in Data — Energy Mix Statistics, ourworldindata.org &nbsp;|&nbsp;
+    U.S. Geological Survey (USGS) — Natural Gas Resources &nbsp;|&nbsp;
+    World Bank Energy Data — worldbank.org
+    <br><span style="opacity:0.5">Infographic produced for informational purposes. Data represents 2023 estimates. Statistics may vary by source methodology.</span>
+  </div>
+</footer>
+
+<script>
+// ── VBAR DATA ──
+const vbarData = [
+  { label: "USA", value: 1013, color: "url(#vg1)" },
+  { label: "Russia", value: 637, color: "url(#vg2)" },
+  { label: "Iran", value: 262, color: "url(#vg3)" },
+  { label: "China", value: 229, color: "url(#vg4)" },
+  { label: "Qatar", value: 178, color: "url(#vg5)" },
+  { label: "Canada", value: 174, color: "url(#vg6)" },
+  { label: "Australia", value: 152, color: "url(#vg7)" },
+  { label: "Norway", value: 123, color: "url(#vg8)" },
+];
+const maxVal = Math.max(...vbarData.map(d => d.value));
+const containerH = 160; // bar area height
+const vbarGroup = document.getElementById('vbarGroup');
+vbarData.forEach(d => {
+  const barH = Math.round((d.value / maxVal) * containerH);
+  const item = document.createElement('div');
+  item.className = 'vbar-item';
+  item.innerHTML = `
+    <div class="vbar-bar" style="height:${barH}px;background:${d.color};">
+      <span class="vbar-val">${d.value}</span>
+    </div>
+    <span class="vbar-label">${d.label}</span>`;
+  vbarGroup.appendChild(item);
+});
+
+// ── HBAR DATA ──
+const hbarData = [
+  { name: "Russia", value: 37.4, color: "#00d4ff", pct: "19.8%" },
+  { name: "Iran", value: 33.9, color: "#00ff9d", pct: "18.0%" },
+  { name: "Qatar", value: 23.8, color: "#ffd700", pct: "12.6%" },
+  { name: "Turkmenistan", value: 13.6, color: "#a855f7", pct: "7.2%" },
+  { name: "USA", value: 12.6, color: "#ff6b35", pct: "6.7%" },
+  { name: "Saudi Arabia", value: 9.4, color: "#00d4ff", pct: "5.0%" },
+  { name: "Venezuela", value: 6.3, color: "#00ff9d", pct: "3.3%" },
+  { name: "UAE", value: 5.9, color: "#ffd700", pct: "3.1%" },
+];
+const maxRes = 37.4;
+const hbarList = document.getElementById('hbarList');
+hbarData.forEach(d => {
+  const widthPct = (d.value / maxRes * 100).toFixed(1);
+  const item = document.createElement('div');
+  item.className = 'hbar-item';
+  item.innerHTML = `
+    <span class="hbar-name">${d.name}</span>
+    <div class="hbar-track">
+      <div class="hbar-fill" style="width:${widthPct}%;background:${d.color};box-shadow:0 0 8px ${d.color}60;"></div>
+    </div>
+    <span class="hbar-pct" style="color:${d.color}">${d.value} TCM</span>`;
+  hbarList.appendChild(item);
+});
+</script>
+</body>
+</html>
