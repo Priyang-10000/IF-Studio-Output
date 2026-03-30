@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lab Grown Diamonds – Data Infographic</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #050a14;
+    --bg2: #080f1e;
+    --bg3: #0d1628;
+    --card: #0e1a2e;
+    --card2: #111f35;
+    --border: #1a2d4a;
+    --accent: #4fd1ff;
+    --accent2: #a78bfa;
+    --accent3: #34d399;
+    --accent4: #fb923c;
+    --accent5: #f472b6;
+    --text: #e2eaf5;
+    --muted: #6b85a8;
+    --glow: rgba(79,209,255,0.18);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #050a14 0%, #0a1628 50%, #080f1e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position:absolute;inset:0;
+    background: radial-gradient(ellipse 800px 400px at 70% 50%, rgba(79,209,255,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 400px 300px at 20% 80%, rgba(167,139,250,0.07) 0%, transparent 60%);
+    pointer-events:none;
+  }
+  .hero-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; position:relative; }
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(79,209,255,0.1); border:1px solid rgba(79,209,255,0.3);
+    border-radius:99px; padding:6px 16px; font-size:12px; font-weight:600;
+    color:var(--accent); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:20px;
+  }
+  .hero-badge span { width:8px;height:8px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+  .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:52px; font-weight:800; line-height:1.1; margin-bottom:16px; }
+  .hero h1 .glow { color:var(--accent); text-shadow:0 0 30px rgba(79,209,255,0.5); }
+  .hero p { font-size:16px; color:var(--muted); line-height:1.7; max-width:480px; }
+  .hero-stats { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .hstat {
+    background: rgba(255,255,255,0.03); border:1px solid var(--border);
+    border-radius:16px; padding:24px 20px;
+    position:relative; overflow:hidden;
+  }
+  .hstat::after {
+    content:''; position:absolute; top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+  }
+  .hstat .val { font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:800; color:var(--accent); }
+  .hstat .val.green { color:var(--accent3); }
+  .hstat .val.purple { color:var(--accent2); }
+  .hstat .val.orange { color:var(--accent4); }
+  .hstat .lbl { font-size:12px; color:var(--muted); margin-top:4px; line-height:1.4; }
+  .hstat .trend { font-size:11px; color:var(--accent3); margin-top:6px; font-weight:600; }
+
+  /* MAIN GRID */
+  .main { padding:40px 48px; display:grid; gap:32px; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .row3 { display:grid; grid-template-columns:1.2fr 0.8fr 1fr; gap:32px; }
+  .row-full { display:grid; grid-template-columns:1fr; gap:32px; }
+
+  /* CARDS */
+  .card {
+    background: var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before {
+    content:''; position:absolute; top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--border),transparent);
+  }
+  .card-title {
+    font-family:'Space Grotesk',sans-serif;
+    font-size:15px; font-weight:700; color:var(--text);
+    margin-bottom:6px; display:flex; align-items:center; gap:8px;
+  }
+  .card-title .dot { width:8px;height:8px;border-radius:50%; flex-shrink:0; }
+  .card-sub { font-size:12px; color:var(--muted); margin-bottom:24px; }
+
+  /* VERTICAL BAR CHART */
+  .vbar-wrap { display:flex; align-items:flex-end; gap:10px; height:180px; padding-bottom:28px; position:relative; }
+  .vbar-wrap::after {
+    content:''; position:absolute; bottom:28px; left:0; right:0; height:1px;
+    background:var(--border);
+  }
+  .vbar-col { display:flex; flex-direction:column; align-items:center; flex:1; height:100%; justify-content:flex-end; }
+  .vbar-bar-wrap { flex:1; display:flex; align-items:flex-end; width:100%; }
+  .vbar-bar {
+    width:100%; border-radius:6px 6px 0 0;
+    position:relative; cursor:pointer;
+    transition:filter 0.2s;
+    min-height:4px;
+  }
+  .vbar-bar:hover { filter:brightness(1.2); }
+  .vbar-val { font-size:10px; font-weight:700; color:var(--text); position:absolute; top:-20px; left:50%; transform:translateX(-50%); white-space:nowrap; }
+  .vbar-lbl { font-size:10px; color:var(--muted); margin-top:6px; text-align:center; line-height:1.3; }
+  .y-lines { position:absolute; top:0; left:0; right:0; bottom:28px; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none; }
+  .y-line { border-top:1px dashed rgba(26,45,74,0.8); width:100%; }
+
+  /* HORIZONTAL BAR */
+  .hbar-row { margin-bottom:16px; }
+  .hbar-meta { display:flex; justify-content:space-between; margin-bottom:6px; }
+  .hbar-name { font-size:13px; color:var(--text); font-weight:500; }
+  .hbar-val { font-size:13px; font-weight:700; }
+  .hbar-track { background:rgba(255,255,255,0.05); border-radius:99px; height:8px; overflow:hidden; }
+  .hbar-fill { height:100%; border-radius:99px; transition:width 0.3s; }
+
+  /* DONUT */
+  .donut-wrap { display:flex; align-items:center; gap:24px; }
+  .donut-legend { display:flex; flex-direction:column; gap:12px; flex:1; }
+  .leg-row { display:flex; align-items:center; gap:10px; }
+  .leg-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+  .leg-name { font-size:12px; color:var(--muted); flex:1; }
+  .leg-val { font-size:13px; font-weight:700; color:var(--text); }
+  .donut-center { text-align:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); }
+  .donut-center .big { font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:800; color:var(--accent); }
+  .donut-center .sm { font-size:10px; color:var(--muted); }
+
+  /* LINE CHART */
+  .line-chart-wrap { position:relative; }
+  .line-y-labels { position:absolute; left:0; top:0; bottom:30px; display:flex; flex-direction:column; justify-content:space-between; }
+  .line-y-label { font-size:10px; color:var(--muted); }
+
+  /* COMPARISON BARS */
+  .compare-item { margin-bottom:20px; }
+  .compare-label { font-size:12px; color:var(--muted); margin-bottom:8px; font-weight:500; }
+  .compare-row { display:flex; gap:8px; align-items:center; margin-bottom:4px; }
+  .compare-tag { font-size:10px; width:60px; flex-shrink:0; color:var(--text); font-weight:600; }
+  .compare-track { flex:1; background:rgba(255,255,255,0.05); border-radius:99px; height:10px; overflow:hidden; }
+  .compare-fill { height:100%; border-radius:99px; }
+  .compare-num { font-size:10px; color:var(--muted); width:36px; text-align:right; flex-shrink:0; }
+
+  /* PROCESS FLOW */
+  .process-flow { display:flex; gap:0; align-items:stretch; }
+  .proc-step { flex:1; position:relative; }
+  .proc-arrow { display:flex; align-items:center; color:var(--muted); font-size:20px; padding:0 4px; align-self:center; flex-shrink:0; }
+  .proc-card {
+    background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px;
+    padding:16px 12px; height:100%; display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px;
+  }
+  .proc-icon { width:40px; height:40px; }
+  .proc-name { font-size:12px; font-weight:700; color:var(--text); }
+  .proc-desc { font-size:10px; color:var(--muted); line-height:1.4; }
+  .proc-num { font-size:10px; font-weight:700; color:var(--accent); }
+
+  /* STAT PILLS */
+  .stat-pills { display:flex; flex-wrap:wrap; gap:12px; }
+  .stat-pill {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:12px; padding:12px 16px; flex:1; min-width:120px;
+  }
+  .pill-val { font-family:'Space Grotesk',sans-serif; font-size:24px; font-weight:800; }
+  .pill-lbl { font-size:11px; color:var(--muted); margin-top:2px; line-height:1.3; }
+
+  /* ENVIRONMENT SECTION */
+  .env-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .env-card {
+    background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:16px;
+  }
+  .env-icon { margin-bottom:8px; }
+  .env-val { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; }
+  .env-lbl { font-size:11px; color:var(--muted); margin-top:2px; }
+
+  /* FOOTER */
+  footer {
+    background:var(--bg2); border-top:1px solid var(--border);
+    padding:28px 48px; margin-top:8px;
+    display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:flex-start;
+  }
+  footer .ftitle { font-size:12px; font-weight:700; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; }
+  footer ul { list-style:none; }
+  footer ul li { font-size:11px; color:var(--muted); margin-bottom:4px; }
+  footer ul li a { color:var(--muted); text-decoration:none; }
+  footer ul li a:hover { color:var(--accent); }
+  .ft-note { font-size:11px; color:var(--muted); max-width:400px; line-height:1.6; }
+  .ft-copy { font-size:11px; color:rgba(107,133,168,0.5); align-self:flex-end; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+
+  /* TAG */
+  .tag {
+    display:inline-flex; align-items:center; gap:4px;
+    background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.25);
+    border-radius:6px; padding:3px 8px; font-size:10px; font-weight:600; color:var(--accent3);
+  }
+  .tag.blue { background:rgba(79,209,255,0.1); border-color:rgba(79,209,255,0.2); color:var(--accent); }
+  .tag.purple { background:rgba(167,139,250,0.1); border-color:rgba(167,139,250,0.2); color:var(--accent2); }
+  .tag.orange { background:rgba(251,146,60,0.1); border-color:rgba(251,146,60,0.2); color:var(--accent4); }
+
+  .section-eyebrow {
+    display:flex; align-items:center; gap:10px; margin-bottom:32px;
+  }
+  .section-eyebrow h2 { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; }
+  .section-eyebrow .line { flex:1; height:1px; background:var(--border); }
+
+  .number-circle {
+    width:32px;height:32px;border-radius:50%;background:rgba(79,209,255,0.1);
+    border:1px solid rgba(79,209,255,0.3); display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:800; color:var(--accent); flex-shrink:0;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<div class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-badge"><span></span> 2024 Industry Report</div>
+      <h1>Lab <span class="glow">Grown</span><br>Diamonds</h1>
+      <p>The science, economics, and environmental impact of laboratory-created diamonds — real diamonds grown in weeks, not millions of years.</p>
+      <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;">
+        <span class="tag blue">● CVD Process</span>
+        <span class="tag">● 100% Carbon</span>
+        <span class="tag purple">● $24B Market</span>
+        <span class="tag orange">● 80% Cost Savings</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="val">$24B</div>
+        <div class="lbl">Global lab-grown diamond market size by 2030</div>
+        <div class="trend">↑ CAGR 9.4%</div>
+      </div>
+      <div class="hstat">
+        <div class="val green">85%</div>
+        <div class="lbl">Less CO₂ emitted vs. mined diamonds (renewably powered)</div>
+        <div class="trend">↑ Environmental edge</div>
+      </div>
+      <div class="hstat">
+        <div class="val purple">~75%</div>
+        <div class="lbl">Price discount vs. equivalent mined diamond (2024)</div>
+        <div class="trend">↓ Prices falling annually</div>
+      </div>
+      <div class="hstat">
+        <div class="val orange">2–4wks</div>
+        <div class="lbl">Time to grow a 1-carat CVD diamond in the lab</div>
+        <div class="trend">vs. 1–3 billion years</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SVG Diamond Illustration -->
+  <svg style="position:absolute;right:2%;top:50%;transform:translateY(-50%);opacity:0.07;" width="260" height="260" viewBox="0 0 260 260">
+    <polygon points="130,10 250,90 250,170 130,250 10,170 10,90" fill="none" stroke="#4fd1ff" stroke-width="1.5"/>
+    <polygon points="130,10 190,90 130,70 70,90" fill="rgba(79,209,255,0.3)" stroke="#4fd1ff" stroke-width="1"/>
+    <polygon points="130,10 70,90 130,70 190,90" fill="rgba(167,139,250,0.2)" stroke="#a78bfa" stroke-width="1"/>
+    <polygon points="70,90 10,170 130,250 190,90 130,70" fill="rgba(79,209,255,0.1)" stroke="#4fd1ff" stroke-width="1"/>
+    <polygon points="190,90 250,170 130,250 130,70" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="1"/>
+    <line x1="130" y1="10" x2="130" y2="250" stroke="#4fd1ff" stroke-width="0.5" stroke-dasharray="4,4"/>
+    <line x1="10" y1="90" x2="250" y2="90" stroke="#4fd1ff" stroke-width="0.5" stroke-dasharray="4,4"/>
+    <line x1="10" y1="170" x2="250" y2="170" stroke="#4fd1ff" stroke-width="0.5" stroke-dasharray="4,4"/>
+  </svg>
+</div>
+
+<!-- ════════════════════ MAIN ════════════════════ -->
+<div class="main">
+
+  <!-- SECTION 1: Market Growth Line Chart + Process -->
+  <div class="section-eyebrow">
+    <div class="number-circle">01</div>
+    <h2>Market Growth & Production Methods</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="row2">
+
+    <!-- LINE CHART: Market Size 2019–2030 -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>Market Size Growth (USD Billion)</div>
+      <div class="card-sub">Global lab-grown diamond market value, 2019–2030 (projected)</div>
+      <div style="margin-left:36px;position:relative;">
+        <svg width="100%" height="200" viewBox="0 0 520 200" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4fd1ff" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#4fd1ff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineGrad2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid lines -->
+          <line x1="0" y1="20" x2="520" y2="20" stroke="#1a2d4a" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="60" x2="520" y2="60" stroke="#1a2d4a" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="100" x2="520" y2="100" stroke="#1a2d4a" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="140" x2="520" y2="140" stroke="#1a2d4a" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="0" y1="180" x2="520" y2="180" stroke="#1a2d4a" stroke-width="1"/>
+          <!-- Y labels -->
+          <text x="-30" y="24" font-size="9" fill="#6b85a8">$25B</text>
+          <text x="-30" y="64" font-size="9" fill="#6b85a8">$20B</text>
+          <text x="-30" y="104" font-size="9" fill="#6b85a8">$15B</text>
+          <text x="-30" y="144" font-size="9" fill="#6b85a8">$10B</text>
+          <text x="-30" y="184" font-size="9" fill="#6b85a8">$5B</text>
+          <!-- Area fill: Lab grown market -->
+          <!-- Data: 2019=3.5, 2020=4.2, 2021=5.8, 2022=8.1, 2023=10.5, 2024=12.8, 2025=15.0, 2026=17.0, 2027=18.8, 2028=20.4, 2029=22.0, 2030=24.0 -->
+          <!-- Scale: y = 180 - (val/25)*160 -->
+          <polygon
+            points="0,157.6 47,153.6 95,143 142,128.2 189,112 237,96.6 284,84 331,74.4 379,59.4 426,49.6 473,39.2 520,26.4 520,180 0,180"
+            fill="url(#lineGrad)"/>
+          <polyline
+            points="0,157.6 47,153.6 95,143 142,128.2 189,112 237,96.6 284,84 331,74.4 379,59.4 426,49.6 473,39.2 520,26.4"
+            fill="none" stroke="#4fd1ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <!-- Data points -->
+          <circle cx="0" cy="157.6" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="47" cy="153.6" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="95" cy="143" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="142" cy="128.2" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="189" cy="112" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="237" cy="96.6" r="5" fill="#4fd1ff" stroke="#050a14" stroke-width="2"/>
+          <circle cx="284" cy="84" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2" opacity="0.6"/>
+          <circle cx="331" cy="74.4" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2" opacity="0.6"/>
+          <circle cx="379" cy="59.4" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2" opacity="0.6"/>
+          <circle cx="426" cy="49.6" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2" opacity="0.6"/>
+          <circle cx="473" cy="39.2" r="4" fill="#4fd1ff" stroke="#050a14" stroke-width="2" opacity="0.6"/>
+          <circle cx="520" cy="26.4" r="5" fill="#a78bfa" stroke="#050a14" stroke-width="2"/>
+          <!-- Labels -->
+          <text x="0" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2019</text>
+          <text x="95" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2021</text>
+          <text x="189" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2023</text>
+          <text x="284" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2025</text>
+          <text x="379" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2027</text>
+          <text x="473" y="175" font-size="9" fill="#6b85a8" text-anchor="middle">2029</text>
+          <text x="520" y="175" font-size="9" fill="#a78bfa" text-anchor="middle">2030</text>
+          <!-- Projection marker -->
+          <line x1="237" y1="10" x2="237" y2="180" stroke="#fb923c" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+          <text x="245" y="18" font-size="9" fill="#fb923c">Projected →</text>
+          <!-- Callout -->
+          <rect x="195" y="85" width="74" height="22" rx="5" fill="rgba(79,209,255,0.12)" stroke="rgba(79,209,255,0.3)" stroke-width="1"/>
+          <text x="232" y="100" font-size="10" fill="#4fd1ff" text-anchor="middle" font-weight="700">$10.5B (2023)</text>
+        </svg>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:16px;height:3px;background:#4fd1ff;border-radius:2px;"></div><span style="font-size:11px;color:var(--muted);">Historical</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:16px;height:3px;background:#4fd1ff;opacity:0.5;border-radius:2px;border-top:1px dashed #4fd1ff;"></div><span style="font-size:11px;color:var(--muted);">Projected</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:8px;height:8px;background:#a78bfa;border-radius:50%;"></div><span style="font-size:11px;color:var(--muted);">2030 Target: $24B</span></div>
+      </div>
+    </div>
+
+    <!-- PROCESS CARD -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent2)"></span>Production Methods</div>
+      <div class="card-sub">Two primary techniques for growing diamonds in laboratory conditions</div>
+
+      <!-- CVD vs HPHT -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+        <div style="background:rgba(79,209,255,0.06);border:1px solid rgba(79,209,255,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:13px;font-weight:800;color:var(--accent);margin-bottom:6px;">CVD</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.5;">Chemical Vapor Deposition — hydrocarbon gas is ionized, carbon atoms deposit on a seed crystal layer by layer.</div>
+          <div style="margin-top:10px;font-size:11px;color:var(--text);font-weight:600;">Temp: ~900°C</div>
+          <div style="font-size:11px;color:var(--muted);">Pressure: 1–27 torr</div>
+          <div style="font-size:11px;color:var(--accent3);margin-top:4px;font-weight:700;">~65% market share</div>
+        </div>
+        <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:12px;padding:14px;">
+          <div style="font-size:13px;font-weight:800;color:var(--accent2);margin-bottom:6px;">HPHT</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.5;">High Pressure High Temperature — mimics natural conditions deep in the Earth using metallic catalyst solutions.</div>
+          <div style="margin-top:10px;font-size:11px;color:var(--text);font-weight:600;">Temp: 1,300–1,600°C</div>
+          <div style="font-size:11px;color:var(--muted);">Pressure: 50,000–70,000 atm</div>
+          <div style="font-size:11px;color:var(--accent2);margin-top:4px;font-weight:700;">~35% market share</div>
+        </div>
+      </div>
+
+      <!-- Production Time SVG Visual -->
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:14px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:10px;font-weight:600;">CARAT GROWTH TIMELINE (CVD)</div>
+        <svg width="100%" height="70" viewBox="0 0 320 70">
+          <!-- Timeline line -->
+          <line x1="20" y1="35" x2="300" y2="35" stroke="#1a2d4a" stroke-width="2"/>
+          <!-- Milestones -->
+          <circle cx="20" cy="35" r="6" fill="#4fd1ff"/>
+          <circle cx="100" cy="35" r="6" fill="#4fd1ff" opacity="0.8"/>
+          <circle cx="180" cy="35" r="6" fill="#a78bfa" opacity="0.8"/>
+          <circle cx="260" cy="35" r="6" fill="#34d399" opacity="0.8"/>
+          <circle cx="300" cy="35" r="6" fill="#fb923c"/>
+          <!-- Labels top -->
+          <text x="20" y="20" font-size="10" fill="#4fd1ff" text-anchor="middle">Day 1</text>
+          <text x="100" y="20" font-size="10" fill="#4fd1ff" text-anchor="middle">Day 5</text>
+          <text x="180" y="20" font-size="10" fill="#a78bfa" text-anchor="middle">Day 14</text>
+          <text x="260" y="20" font-size="10" fill="#34d399" text-anchor="middle">Day 21</text>
+          <text x="300" y="20" font-size="10" fill="#fb923c" text-anchor="middle">Day 28</text>
+          <!-- Labels bottom -->
+          <text x="20" y="55" font-size="9" fill="#6b85a8" text-anchor="middle">Seed</text>
+          <text x="100" y="55" font-size="9" fill="#6b85a8" text-anchor="middle">0.1ct</text>
+          <text x="180" y="55" font-size="9" fill="#6b85a8" text-anchor="middle">0.5ct</text>
+          <text x="260" y="55" font-size="9" fill="#6b85a8" text-anchor="middle">0.9ct</text>
+          <text x="300" y="55" font-size="9" fill="#fb923c" text-anchor="middle">1.0ct</text>
+          <!-- Progress fill -->
+          <line x1="20" y1="35" x2="300" y2="35" stroke="url(#timeGrad)" stroke-width="3"/>
+          <defs>
+            <linearGradient id="timeGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4fd1ff"/>
+              <stop offset="100%" stop-color="#fb923c"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: Price Comparison + Environmental -->
+  <div class="section-eyebrow">
+    <div class="number-circle">02</div>
+    <h2>Price Comparison & Environmental Impact</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="row3">
+
+    <!-- VERTICAL BAR: Price per carat by year -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent4)"></span>Price per Carat: Lab vs. Mined (USD)</div>
+      <div class="card-sub">Average retail price per 1-carat, round brilliant cut, VS1 clarity, G color</div>
+      <div style="position:relative;">
+        <div class="y-lines">
+          <div class="y-line"></div><div class="y-line"></div><div class="y-line"></div><div class="y-line"></div>
+        </div>
+        <div class="vbar-wrap">
+          <!-- 2019 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#1a7fa8);height:62px;"><span class="vbar-val" style="color:#4fd1ff;">4,200</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:126px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2019</div>
+          </div>
+          <!-- 2020 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#1a7fa8);height:52px;"><span class="vbar-val" style="color:#4fd1ff;">3,500</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:122px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2020</div>
+          </div>
+          <!-- 2021 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#1a7fa8);height:38px;"><span class="vbar-val" style="color:#4fd1ff;">2,500</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:130px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2021</div>
+          </div>
+          <!-- 2022 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#1a7fa8);height:26px;"><span class="vbar-val" style="color:#4fd1ff;">1,800</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:130px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2022</div>
+          </div>
+          <!-- 2023 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#1a7fa8);height:16px;"><span class="vbar-val" style="color:#4fd1ff;">1,100</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:134px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2023</div>
+          </div>
+          <!-- 2024 -->
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div style="display:flex;flex-direction:column;gap:3px;width:100%;align-items:flex-end;justify-content:flex-end;height:100%;">
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,#fb923c,#b45309);height:12px;"><span class="vbar-val" style="color:#fb923c;">800</span></div>
+                </div>
+                <div style="position:relative;width:100%;">
+                  <div class="vbar-bar" style="background:linear-gradient(180deg,rgba(79,209,255,0.3),rgba(79,209,255,0.1));height:138px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="vbar-lbl">2024</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;background:#4fd1ff;border-radius:3px;"></div><span style="font-size:11px;color:var(--muted);">Lab-Grown</span></div>
+        <div style="display:flex;align-items:center;gap:6px;"><div style="width:12px;height:12px;background:rgba(79,209,255,0.3);border-radius:3px;"></div><span style="font-size:11px;color:var(--muted);">Mined (~$4,500 stable)</span></div>
+      </div>
+    </div>
+
+    <!-- DONUT: Market Share by Region -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent3)"></span>Market Share by Region (2023)</div>
+      <div class="card-sub">Revenue distribution across key global markets</div>
+      <div class="donut-wrap">
+        <div style="position:relative;flex-shrink:0;">
+          <svg width="140" height="140" viewBox="0 0 140 140">
+            <defs>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <!-- Background circle -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="18"/>
+            <!-- USA: 38% = 238.8deg -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="#4fd1ff" stroke-width="18"
+              stroke-dasharray="131.5 214.9" stroke-dashoffset="0" transform="rotate(-90,70,70)" filter="url(#glow)"/>
+            <!-- China: 27% = 169.8deg -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="#a78bfa" stroke-width="18"
+              stroke-dasharray="93.5 252.9" stroke-dashoffset="-131.5" transform="rotate(-90,70,70)"/>
+            <!-- India: 18% = 113.2deg -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="#34d399" stroke-width="18"
+              stroke-dasharray="62.3 284.1" stroke-dashoffset="-225" transform="rotate(-90,70,70)"/>
+            <!-- Europe: 10% = 63deg -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="#fb923c" stroke-width="18"
+              stroke-dasharray="34.6 311.8" stroke-dashoffset="-287.3" transform="rotate(-90,70,70)"/>
+            <!-- Rest: 7% -->
+            <circle cx="70" cy="70" r="55" fill="none" stroke="#f472b6" stroke-width="18"
+              stroke-dasharray="24.2 322.2" stroke-dashoffset="-321.9" transform="rotate(-90,70,70)"/>
+            <!-- Center -->
+            <circle cx="70" cy="70" r="42" fill="#0e1a2e"/>
+            <text x="70" y="65" font-size="18" fill="#4fd1ff" text-anchor="middle" font-weight="800" font-family="Space Grotesk">38%</text>
+            <text x="70" y="79" font-size="9" fill="#6b85a8" text-anchor="middle">USA lead</text>
+          </svg>
+        </div>
+        <div class="donut-legend">
+          <div class="leg-row"><div class="leg-dot" style="background:#4fd1ff;"></div><span class="leg-name">USA</span><span class="leg-val" style="color:#4fd1ff;">38%</span></div>
+          <div class="leg-row"><div class="leg-dot" style="background:#a78bfa;"></div><span class="leg-name">China</span><span class="leg-val" style="color:#a78bfa;">27%</span></div>
+          <div class="leg-row"><div class="leg-dot" style="background:#34d399;"></div><span class="leg-name">India</span><span class="leg-val" style="color:#34d399;">18%</span></div>
+          <div class="leg-row"><div class="leg-dot" style="background:#fb923c;"></div><span class="leg-name">Europe</span><span class="leg-val" style="color:#fb923c;">10%</span></div>
+          <div class="leg-row"><div class="leg-dot" style="background:#f472b6;"></div><span class="leg-name">Other</span><span class="leg-val" style="color:#f472b6;">7%</span></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:12px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px;">India is world's largest <strong style="color:var(--text);">manufacturer</strong> — Surat processes 90% of all lab diamonds</div>
+        <div style="font-size:11px;color:var(--accent3);font-weight:600;">↑ China fastest growing: +32% YoY (2023)</div>
+      </div>
+    </div>
+
+    <!-- ENVIRONMENTAL IMPACT -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent3)"></span>Environmental Impact</div>
+      <div class="card-sub">Lab-grown vs. mined diamond per carat produced</div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <!-- CO2 -->
+        <div class="compare-item" style="margin-bottom:0;">
+          <div class="compare-label">CO₂ Emissions (kg per carat)</div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--accent);">Lab</span>
+            <div class="compare-track"><div class="compare-fill" style="width:14%;background:linear-gradient(90deg,#4fd1ff,#34d399);"></div></div>
+            <span class="compare-num" style="color:var(--accent3);">~6 kg</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--muted);">Mined</span>
+            <div class="compare-track"><div class="compare-fill" style="width:100%;background:linear-gradient(90deg,#ef4444,#dc2626);"></div></div>
+            <span class="compare-num" style="color:#ef4444;">~57 kg</span>
+          </div>
+        </div>
+        <!-- Water Usage -->
+        <div class="compare-item" style="margin-bottom:0;">
+          <div class="compare-label">Water Usage (L per carat)</div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--accent);">Lab</span>
+            <div class="compare-track"><div class="compare-fill" style="width:8%;background:linear-gradient(90deg,#4fd1ff,#34d399);"></div></div>
+            <span class="compare-num" style="color:var(--accent3);">~70 L</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--muted);">Mined</span>
+            <div class="compare-track"><div class="compare-fill" style="width:100%;background:linear-gradient(90deg,#ef4444,#dc2626);"></div></div>
+            <span class="compare-num" style="color:#ef4444;">~480 L</span>
+          </div>
+        </div>
+        <!-- Land Disturbance -->
+        <div class="compare-item" style="margin-bottom:0;">
+          <div class="compare-label">Land Disturbance (m² per carat)</div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--accent);">Lab</span>
+            <div class="compare-track"><div class="compare-fill" style="width:0.5%;background:linear-gradient(90deg,#4fd1ff,#34d399);min-width:4px;"></div></div>
+            <span class="compare-num" style="color:var(--accent3);">~0.07</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--muted);">Mined</span>
+            <div class="compare-track"><div class="compare-fill" style="width:100%;background:linear-gradient(90deg,#ef4444,#dc2626);"></div></div>
+            <span class="compare-num" style="color:#ef4444;">~5.9 m²</span>
+          </div>
+        </div>
+        <!-- Energy -->
+        <div class="compare-item" style="margin-bottom:0;">
+          <div class="compare-label">Energy Consumption (kWh per carat)</div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--accent);">Lab</span>
+            <div class="compare-track"><div class="compare-fill" style="width:55%;background:linear-gradient(90deg,#a78bfa,#4fd1ff);"></div></div>
+            <span class="compare-num" style="color:var(--accent2);">~250 kWh</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-tag" style="color:var(--muted);">Mined</span>
+            <div class="compare-track"><div class="compare-fill" style="width:100%;background:linear-gradient(90deg,#ef4444,#dc2626);"></div></div>
+            <span class="compare-num" style="color:#ef4444;">~538 kWh</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;">
+        <div style="background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);border-radius:8px;padding:8px 12px;flex:1;">
+          <div style="font-size:18px;font-weight:800;color:var(--accent3);">89%</div>
+          <div style="font-size:10px;color:var(--muted);">Less land disturbed</div>
+        </div>
+        <div style="background:rgba(79,209,255,0.08);border:1px solid rgba(79,209,255,0.15);border-radius:8px;padding:8px 12px;flex:1;">
+          <div style="font-size:18px;font-weight:800;color:var(--accent);">85%</div>
+          <div style="font-size:10px;color:var(--muted);">Less CO₂ (renewable)</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: Consumer Adoption + Jewelry Usage -->
+  <div class="section-eyebrow">
+    <div class="number-circle">03</div>
+    <h2>Consumer Adoption & Market Application</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="row2">
+
+    <!-- HBAR: Consumer Awareness -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent2)"></span>Consumer Awareness & Purchase Intent by Age Group (2023)</div>
+      <div class="card-sub">% of respondents who are aware of or willing to buy lab-grown diamonds</div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px;font-weight:600;letter-spacing:0.05em;">AWARENESS (%)</div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Gen Z (18–27)</span><span class="hbar-val" style="color:#4fd1ff;">87%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:87%;background:linear-gradient(90deg,#4fd1ff,#1a7fa8);"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Millennials (28–43)</span><span class="hbar-val" style="color:#a78bfa;">79%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:79%;background:linear-gradient(90deg,#a78bfa,#6d28d9);"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Gen X (44–59)</span><span class="hbar-val" style="color:#34d399;">64%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:64%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Baby Boomers (60+)</span><span class="hbar-val" style="color:#fb923c;">41%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:41%;background:linear-gradient(90deg,#fb923c,#c2410c);"></div></div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);padding-top:16px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px;font-weight:600;letter-spacing:0.05em;">PURCHASE INTENT (%)</div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Would consider for engagement ring</span><span class="hbar-val" style="color:#4fd1ff;">70%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:70%;background:linear-gradient(90deg,#4fd1ff,rgba(79,209,255,0.5));"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Would pay same as mined</span><span class="hbar-val" style="color:#f472b6;">22%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:22%;background:linear-gradient(90deg,#f472b6,#be185d);"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Prefer lab-grown for ethics</span><span class="hbar-val" style="color:#34d399;">58%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:58%;background:linear-gradient(90deg,#34d399,#059669);"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Already purchased lab diamond</span><span class="hbar-val" style="color:#a78bfa;">34%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:34%;background:linear-gradient(90deg,#a78bfa,#6d28d9);"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Usage Distribution + Key Facts -->
+    <div style="display:flex;flex-direction:column;gap:24px;">
+
+      <!-- DONUT: Usage by Jewelry Category -->
+      <div class="card" style="flex:1;">
+        <div class="card-title"><span class="dot" style="background:var(--accent4)"></span>Lab Diamond Usage by Category (2023)</div>
+        <div class="card-sub">% share of lab-grown diamonds sold per jewelry type</div>
+
+        <div style="display:flex;align-items:center;gap:20px;">
+          <svg width="120" height="120" viewBox="0 0 120 120" style="flex-shrink:0;">
+            <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="16"/>
+            <!-- Engagement: 48% -->
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#fb923c" stroke-width="16"
+              stroke-dasharray="144.5 157.5" stroke-dashoffset="0" transform="rotate(-90,60,60)"/>
+            <!-- Earrings: 21% -->
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#4fd1ff" stroke-width="16"
+              stroke-dasharray="63.2 238.8" stroke-dashoffset="-144.5" transform="rotate(-90,60,60)"/>
+            <!-- Pendants: 15% -->
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#34d399" stroke-width="16"
+              stroke-dasharray="45.2 256.8" stroke-dashoffset="-207.7" transform="rotate(-90,60,60)"/>
+            <!-- Bracelets: 9% -->
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#a78bfa" stroke-width="16"
+              stroke-dasharray="27.1 274.9" stroke-dashoffset="-252.9" transform="rotate(-90,60,60)"/>
+            <!-- Other: 7% -->
+            <circle cx="60" cy="60" r="48" fill="none" stroke="#f472b6" stroke-width="16"
+              stroke-dasharray="21.1 280.9" stroke-dashoffset="-280" transform="rotate(-90,60,60)"/>
+            <circle cx="60" cy="60" r="36" fill="#0e1a2e"/>
+            <text x="60" y="55" font-size="15" fill="#fb923c" text-anchor="middle" font-weight="800">48%</text>
+            <text x="60" y="68" font-size="8" fill="#6b85a8" text-anchor="middle">Engagement</text>
+          </svg>
+          <div style="display:flex;flex-direction:column;gap:8px;flex:1;">
+            <div class="leg-row"><div class="leg-dot" style="background:#fb923c;"></div><span class="leg-name">Engagement Rings</span><span class="leg-val" style="color:#fb923c;">48%</span></div>
+            <div class="leg-row"><div class="leg-dot" style="background:#4fd1ff;"></div><span class="leg-name">Earrings</span><span class="leg-val" style="color:#4fd1ff;">21%</span></div>
+            <div class="leg-row"><div class="leg-dot" style="background:#34d399;"></div><span class="leg-name">Pendants</span><span class="leg-val" style="color:#34d399;">15%</span></div>
+            <div class="leg-row"><div class="leg-dot" style="background:#a78bfa;"></div><span class="leg-name">Bracelets</span><span class="leg-val" style="color:#a78bfa;">9%</span></div>
+            <div class="leg-row"><div class="leg-dot" style="background:#f472b6;"></div><span class="leg-name">Other</span><span class="leg-val" style="color:#f472b6;">7%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat Pills -->
+      <div class="card" style="padding:20px;">
+        <div class="card-title" style="margin-bottom:14px;"><span class="dot" style="background:var(--accent)"></span>Key Industry Facts</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div style="background:rgba(79,209,255,0.06);border:1px solid rgba(79,209,255,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:22px;font-weight:800;color:var(--accent);font-family:'Space Grotesk';">17–20%</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;">of US diamond engagement rings are now lab-grown (2023)</div>
+          </div>
+          <div style="background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:22px;font-weight:800;color:var(--accent3);font-family:'Space Grotesk';">IGI / GIA</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;">Both certify lab diamonds with same grading standards as mined</div>
+          </div>
+          <div style="background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:22px;font-weight:800;color:var(--accent2);font-family:'Space Grotesk';">4C's</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;">Identical grading: Cut, Color, Clarity, Carat — same as natural diamonds</div>
+          </div>
+          <div style="background:rgba(251,146,60,0.06);border:1px solid rgba(251,146,60,0.15);border-radius:10px;padding:12px;">
+            <div style="font-size:22px;font-weight:800;color:var(--accent4);font-family:'Space Grotesk';">10:1</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;">Ratio of industrial to gem-quality lab diamonds produced annually</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SECTION 4: Physical Properties + Vertical Bar Top Producers -->
+  <div class="section-eyebrow">
+    <div class="number-circle">04</div>
+    <h2>Physical Properties & Top Producing Countries</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="row2">
+
+    <!-- Physical Properties Comparison -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>Physical & Optical Properties: Lab vs. Natural Diamond</div>
+      <div class="card-sub">Lab-grown diamonds are chemically identical to mined — differences are largely economic</div>
+
+      <!-- SVG Crystal structure illustration -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;">
+          <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 8px;">
+            <!-- Lab diamond icon -->
+            <polygon points="40,5 70,28 70,52 40,75 10,52 10,28" fill="none" stroke="#4fd1ff" stroke-width="1.5"/>
+            <polygon points="40,5 55,28 40,22 25,28" fill="rgba(79,209,255,0.2)" stroke="#4fd1ff" stroke-width="1"/>
+            <polygon points="25,28 10,52 40,75 55,28 40,22" fill="rgba(79,209,255,0.1)" stroke="#4fd1ff" stroke-width="0.8"/>
+            <polygon points="55,28 70,52 40,75 40,22" fill="rgba(167,139,250,0.15)" stroke="#a78bfa" stroke-width="0.8"/>
+            <circle cx="40" cy="40" r="4" fill="rgba(79,209,255,0.4)"/>
+            <text x="40" y="44" font-size="5" fill="#4fd1ff" text-anchor="middle">C</text>
+          </svg>
+          <div style="font-size:12px;font-weight:700;color:var(--accent);">Lab-Grown</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">CVD / HPHT</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;">
+          <svg width="80" height="80" viewBox="0 0 80 80" style="margin:0 auto 8px;">
+            <!-- Natural diamond icon with earth tones -->
+            <polygon points="40,5 70,28 70,52 40,75 10,52 10,28" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+            <polygon points="40,5 55,28 40,22 25,28" fill="rgba(167,139,250,0.25)" stroke="#a78bfa" stroke-width="1"/>
+            <polygon points="25,28 10,52 40,75 55,28 40,22" fill="rgba(167,139,250,0.12)" stroke="#a78bfa" stroke-width="0.8"/>
+            <polygon points="55,28 70,52 40,75 40,22" fill="rgba(79,209,255,0.1)" stroke="#4fd1ff" stroke-width="0.8"/>
+            <circle cx="40" cy="40" r="4" fill="rgba(167,139,250,0.4)"/>
+            <text x="40" y="44" font-size="5" fill="#a78bfa" text-anchor="middle">C</text>
+          </svg>
+          <div style="font-size:12px;font-weight:700;color:var(--accent2);">Natural</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px;">Earth-mined</div>
+        </div>
+      </div>
+
+      <!-- Properties Table -->
+      <div style="border-radius:10px;overflow:hidden;border:1px solid var(--border);">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;background:rgba(255,255,255,0.04);padding:8px 12px;">
+          <span style="font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Property</span>
+          <span style="font-size:10px;color:var(--accent);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Lab</span>
+          <span style="font-size:10px;color:var(--accent2);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">Natural</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);background:rgba(255,255,255,0.01);">
+          <span style="font-size:12px;color:var(--muted);">Chemical Formula</span>
+          <span style="font-size:12px;color:var(--text);font-weight:600;">C (pure)</span>
+          <span style="font-size:12px;color:var(--text);font-weight:600;">C (pure)</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);">
+          <span style="font-size:12px;color:var(--muted);">Mohs Hardness</span>
+          <span style="font-size:12px;color:var(--accent);font-weight:600;">10</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">10</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);background:rgba(255,255,255,0.01);">
+          <span style="font-size:12px;color:var(--muted);">Refractive Index</span>
+          <span style="font-size:12px;color:var(--accent);font-weight:600;">2.417</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">2.417</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);">
+          <span style="font-size:12px;color:var(--muted);">Thermal Conductivity</span>
+          <span style="font-size:12px;color:var(--accent);font-weight:600;">~2000 W/mK</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">~2000 W/mK</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);background:rgba(255,255,255,0.01);">
+          <span style="font-size:12px;color:var(--muted);">Crystal Structure</span>
+          <span style="font-size:12px;color:var(--accent);font-weight:600;">Cubic</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">Cubic</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);">
+          <span style="font-size:12px;color:var(--muted);">Detectable difference</span>
+          <span style="font-size:12px;color:var(--accent3);font-weight:600;">Spectrometer</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">Spectrometer</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;border-top:1px solid var(--border);background:rgba(255,255,255,0.01);">
+          <span style="font-size:12px;color:var(--muted);">Density (g/cm³)</span>
+          <span style="font-size:12px;color:var(--accent);font-weight:600;">3.515</span>
+          <span style="font-size:12px;color:var(--accent2);font-weight:600;">3.515</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- VBAR: Top Producing Countries by Volume -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent4)"></span>Top Lab Diamond Producing Countries (2023)</div>
+      <div class="card-sub">Estimated production volume (million carats per year)</div>
+
+      <!-- Horizontal bars for countries -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect width="20" height="14" rx="2" fill="#de2910"/><rect y="4" width="20" height="2" fill="#ffde00"/><rect y="7.5" width="20" height="1" fill="#ffde00"/></svg>
+              <span style="font-size:13px;color:var(--text);font-weight:600;">China</span>
+            </div>
+            <span style="font-size:13px;font-weight:800;color:#4fd1ff;">~12M ct</span>
+          </div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:100%;background:linear-gradient(90deg,#4fd1ff,#1a7fa8);height:10px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect width="20" height="7" rx="0" fill="#ff9933"/><rect y="0" width="20" height="2" rx="0" fill="#ff9933"/><rect y="5" width="20" height="2" fill="#fff" x="0"/><rect y="9" width="20" height="5" fill="#138808"/><circle cx="10" cy="7" r="2.5" fill="none" stroke="#000080" stroke-width="0.5"/></svg>
+              <span style="font-size:13px;color:var(--text);font-weight:600;">India</span>
+            </div>
+            <span style="font-size:13px;font-weight:800;color:#a78bfa;">~5M ct</span>
+          </div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:42%;background:linear-gradient(90deg,#a78bfa,#6d28d9);height:10px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect width="20" height="14" rx="2" fill="#b22234"/><rect y="0" width="20" height="1.5" fill="#b22234"/><rect y="1.5" width="20" height="1.5" fill="#fff"/><rect y="3" width="20" height="1.5" fill="#b22234"/><rect y="4.5" width="20" height="1.5" fill="#fff"/><rect y="6" width="20" height="1.5" fill="#b22234"/><rect y="7.5" width="20" height="1.5" fill="#fff"/><rect y="9" width="20" height="1.5" fill="#b22234"/><rect y="10.5" width="20" height="1.5" fill="#fff"/><rect y="12" width="20" height="2" fill="#b22234"/><rect width="8" height="7.5" fill="#3c3b6e"/></svg>
+              <span style="font-size:13px;color:var(--text);font-weight:600;">USA</span>
+            </div>
+            <span style="font-size:13px;font-weight:800;color:#34d399;">~2.8M ct</span>
+          </div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:23%;background:linear-gradient(90deg,#34d399,#059669);height:10px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect width="20" height="14" rx="2" fill="#009b3a"/><rect x="7" width="6" height="14" fill="#fedf00"/><rect x="0" y="4" width="20" height="6" fill="#002776" opacity="0.9"/><ellipse cx="10" cy="7" rx="4" ry="2.5" fill="none" stroke="#fff" stroke-width="0.5" opacity="0.5"/></svg>
+              <span style="font-size:13px;color:var(--text);font-weight:600;">Singapore</span>
+            </div>
+            <span style="font-size:13px;font-weight:800;color:#fb923c;">~1.5M ct</span>
+          </div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:12.5%;background:linear-gradient(90deg,#fb923c,#c2410c);height:10px;"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div style="display:flex;align-items:center;gap:8px;">
+              <svg width="20" height="14" viewBox="0 0 20 14"><rect width="20" height="14" rx="2" fill="#012169"/><line x1="0" y1="0" x2="20" y2="14" stroke="#fff" stroke-width="2"/><line x1="20" y1="0" x2="0" y2="14" stroke="#fff" stroke-width="2"/><line x1="0" y1="0" x2="20" y2="14" stroke="#C8102E" stroke-width="1"/><line x1="20" y1="0" x2="0" y2="14" stroke="#C8102E" stroke-width="1"/><rect x="8" width="4" height="14" fill="#fff"/><rect y="5" width="20" height="4" fill="#fff"/><rect x="9" width="2" height="14" fill="#C8102E"/><rect y="6" width="20" height="2" fill="#C8102E"/></svg>
+              <span style="font-size:13px;color:var(--text);font-weight:600;">UK</span>
+            </div>
+            <span style="font-size:13px;font-weight:800;color:#f472b6;">~0.8M ct</span>
+          </div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:6.7%;background:linear-gradient(90deg,#f472b6,#be185d);height:10px;"></div></div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:14px;">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-weight:600;">GLOBAL TOTAL PRODUCTION TREND</div>
+        <svg width="100%" height="50" viewBox="0 0 280 50">
+          <defs>
+            <linearGradient id="prodGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#4fd1ff"/>
+              <stop offset="100%" stop-color="#34d399"/>
+            </linearGradient>
+          </defs>
+          <polyline points="0,45 40,40 80,33 120,26 160,18 200,12 240,8 280,4" fill="none" stroke="url(#prodGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+          <polygon points="0,45 40,40 80,33 120,26 160,18 200,12 240,8 280,4 280,50 0,50" fill="url(#prodGrad)" opacity="0.1"/>
+          <circle cx="0" cy="45" r="3" fill="#4fd1ff" stroke="#0e1a2e" stroke-width="1.5"/>
+          <circle cx="280" cy="4" r="3" fill="#34d399" stroke="#0e1a2e" stroke-width="1.5"/>
+          <text x="0" y="50" font-size="8" fill="#6b85a8">2018</text>
+          <text x="245" y="50" font-size="8" fill="#6b85a8">2024</text>
+          <text x="4" y="41" font-size="8" fill="#4fd1ff">5M ct</text>
+          <text x="240" y="14" font-size="8" fill="#34d399">22M ct</text>
+        </svg>
+        <div style="font-size:10px;color:var(--accent3);font-weight:600;margin-top:4px;">↑ 340% growth in total global production (2018–2024)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: VBAR Price-drop acceleration + Segment Breakdown -->
+  <div class="section-eyebrow">
+    <div class="number-circle">05</div>
+    <h2>Industry Applications & Future Outlook</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="row3">
+
+    <!-- Industrial Applications HBAR -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent)"></span>Industrial Applications of Lab-Grown Diamonds</div>
+      <div class="card-sub">~80% of all lab diamonds go to industrial use cases — the gem market is the premium segment</div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Cutting / Drilling Tools</span><span class="hbar-val" style="color:#4fd1ff;">34%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:34%;background:linear-gradient(90deg,#4fd1ff,#0ea5e9);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Semiconductor / Electronics</span><span class="hbar-val" style="color:#a78bfa;">22%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:22%;background:linear-gradient(90deg,#a78bfa,#7c3aed);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Gem / Jewelry</span><span class="hbar-val" style="color:#fb923c;">19%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:19%;background:linear-gradient(90deg,#fb923c,#f59e0b);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Optics / Laser Windows</span><span class="hbar-val" style="color:#34d399;">12%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:12%;background:linear-gradient(90deg,#34d399,#10b981);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Medical / Biotech</span><span class="hbar-val" style="color:#f472b6;">7%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:7%;background:linear-gradient(90deg,#f472b6,#ec4899);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Quantum Computing</span><span class="hbar-val" style="color:#4fd1ff;">4%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:4%;background:linear-gradient(90deg,#4fd1ff,#0ea5e9);height:10px;"></div></div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-meta"><span class="hbar-name">Heat Sink (Thermal Mgmt)</span><span class="hbar-val" style="color:#34d399;">2%</span></div>
+          <div class="hbar-track"><div class="hbar-fill" style="width:2%;background:linear-gradient(90deg,#34d399,#10b981);height:10px;"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.15);border-radius:10px;">
+        <div style="font-size:12px;color:var(--accent2);font-weight:700;margin-bottom:4px;">🔬 Emerging: Quantum Computing</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.5;">Diamond NV-centers (nitrogen-vacancy defects) are key qubits in next-gen quantum processors. Companies like Element Six and Q-Diamond are pioneering this.</div>
+      </div>
+    </div>
+
+    <!-- Major Players VBAR -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent2)"></span>Major Players: Revenue Estimate (2023, $M)</div>
+      <div class="card-sub">Key companies in lab-grown diamond production & retail</div>
+      <div style="position:relative;margin-top:8px;">
+        <div class="y-lines" style="bottom:32px;">
+          <div class="y-line"></div><div class="y-line"></div><div class="y-line"></div>
+        </div>
+        <div class="vbar-wrap" style="height:160px;gap:8px;">
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#0e7490);height:100%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#4fd1ff;font-size:9px;">$900M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">De Beers<br>Lightbox</div>
+          </div>
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#a78bfa,#5b21b6);height:78%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#a78bfa;font-size:9px;">$700M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">Swarovski<br>(LGD line)</div>
+          </div>
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#34d399,#047857);height:64%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#34d399;font-size:9px;">$580M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">Diamond<br>Foundry</div>
+          </div>
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#fb923c,#b45309);height:55%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#fb923c;font-size:9px;">$490M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">Pandora<br>(LGD)</div>
+          </div>
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#f472b6,#9d174d);height:40%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#f472b6;font-size:9px;">$360M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">Brilliant<br>Earth</div>
+          </div>
+          <div class="vbar-col">
+            <div class="vbar-bar-wrap">
+              <div class="vbar-bar" style="background:linear-gradient(180deg,#4fd1ff,#0e7490);height:28%;width:100%;position:relative;">
+                <span class="vbar-val" style="color:#4fd1ff;font-size:9px;">$250M</span>
+              </div>
+            </div>
+            <div class="vbar-lbl" style="font-size:9px;">New Age<br>Diamonds</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future Outlook Card -->
+    <div class="card">
+      <div class="card-title"><span class="dot" style="background:var(--accent3)"></span>Future Outlook 2025–2035</div>
+      <div class="card-sub">Projected trends shaping the lab diamond industry</div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:rgba(79,209,255,0.06);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:12px 14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--accent);margin-bottom:4px;">📉 Continued Price Decline</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.4;">Prices expected to fall another 40–60% by 2030 as production efficiency improves. Cost of growing 1ct: from ~$300 today to under $100.</div>
+        </div>
+        <div style="background:rgba(52,211,153,0.06);border-left:3px solid var(--accent3);border-radius:0 8px 8px 0;padding:12px 14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--accent3);margin-bottom:4px;">🌱 Renewable Energy Push</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.4;">Diamond Foundry already runs on 100% renewable energy. Industry-wide net-zero commitments expected by 2030 from major producers.</div>
+        </div>
+        <div style="background:rgba(167,139,250,0.06);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:12px 14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--accent2);margin-bottom:4px;">⚛️ Quantum Tech Boom</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.4;">NV-center diamonds in quantum computing & sensing expected to be a $2B+ market by 2030. Ultra-pure CVD diamonds are essential.</div>
+        </div>
+        <div style="background:rgba(251,146,60,0.06);border-left:3px solid var(--accent4);border-radius:0 8px 8px 0;padding:12px 14px;">
+          <div style="font-size:12px;font-weight:700;color:var(--accent4);margin-bottom:4px;">💍 Bridal Market Shift</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.4;">Lab diamonds projected to capture 30–40% of the US engagement ring market by 2026, up from 17–20% in 2023.</div>
+        </div>
+        <div style="background:rgba(244,114,182,0.06);border-left:3px solid #f472b6;border-radius:0 8px 8px 0;padding:12px 14px;">
+          <div style="font-size:12px;font-weight:700;color:#f472b6;margin-bottom:4px;">🔩 Electronics Integration</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.4;">Diamond semiconductors conduct heat 5× better than silicon. Ultra-wide bandgap properties make them ideal for next-gen power electronics & 6G.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="ftitle">Data Sources</div>
+    <ul>
+      <li><a href="#">Bain & Company — Global Diamond Industry Report 2023</a></li>
+      <li><a href="#">Grand View Research — Lab-Grown Diamond Market Size 2024</a></li>
+      <li><a href="#">Paul Zimnisky Diamond Analytics — Market Share Data</a></li>
+      <li><a href="#">Trucost / S&P — Environmental Impact Analysis of Diamond Mining</a></li>
+      <li><a href="#">The Knot — Wedding & Engagement Jewelry Study 2023</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="ftitle">Additional References</div>
+    <ul>
+      <li><a href="#">GIA — Grading Lab-Grown Diamonds (gia.edu)</a></li>
+      <li><a href="#">IGI — International Gemological Institute Reports</a></li>
+      <li><a href="#">McKinsey & Co — Future of Lab-Grown Gems 2024</a></li>
+      <li><a href="#">De Beers Group — Lightbox Annual Overview</a></li>
+      <li><a href="#">Brilliant Earth — Sustainability Report 2023</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="ftitle">Methodology</div>
+    <p class="ft-note">Market size data aggregated from multiple industry analysts (Bain, Grand View Research, Statista). Environmental figures sourced from peer-reviewed studies and Trucost ESG analysis. Price data based on 1-carat, round brilliant, VS1/G comparable gems, retail averages. Some figures represent estimates and may vary by source.</p>
+  </div>
+  <div class="ft-copy">Infographic generated 2024 · Lab-Grown Diamond Industry Overview</div>
+</footer>
+
+</body>
+</html>
