@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lithium – The White Gold of the Energy Revolution</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@700;900&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #050a12;
+    --bg2: #080f1a;
+    --card: #0d1a2e;
+    --card2: #0a1525;
+    --border: #1a3050;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --accent4: #f59e0b;
+    --accent5: #ef4444;
+    --text: #e2f0ff;
+    --muted: #6b8ba4;
+    --grid: rgba(0,212,255,0.04);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .wrapper { max-width: 1300px; margin: 0 auto; padding: 40px 24px; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: center;
+    margin-bottom: 48px;
+    background: linear-gradient(135deg, #0d1a2e 0%, #0a1020 100%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(0,212,255,0.12);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(0,212,255,0.3);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 60%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 480px;
+  }
+
+  .hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .pill {
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid;
+  }
+
+  .pill-blue { background: rgba(0,212,255,0.1); color: var(--accent); border-color: rgba(0,212,255,0.3); }
+  .pill-purple { background: rgba(124,58,237,0.12); color: #a78bfa; border-color: rgba(124,58,237,0.35); }
+  .pill-green { background: rgba(16,185,129,0.1); color: var(--accent3); border-color: rgba(16,185,129,0.3); }
+
+  /* ATOM SVG */
+  .hero-visual { display: flex; justify-content: center; align-items: center; }
+
+  /* STAT GRID */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .stat-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .stat-card.c1::after { background: linear-gradient(90deg, var(--accent), #0080ff); }
+  .stat-card.c2::after { background: linear-gradient(90deg, var(--accent2), #c084fc); }
+  .stat-card.c3::after { background: linear-gradient(90deg, var(--accent3), #34d399); }
+  .stat-card.c4::after { background: linear-gradient(90deg, var(--accent4), #fbbf24); }
+
+  .stat-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .stat-value { font-family: 'Orbitron', monospace; font-size: clamp(22px, 3vw, 36px); font-weight: 900; line-height: 1; margin-bottom: 6px; }
+  .stat-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+  .sv1 { color: var(--accent); }
+  .sv2 { color: #a78bfa; }
+  .sv3 { color: var(--accent3); }
+  .sv4 { color: var(--accent4); }
+
+  /* SECTION HEADERS */
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 20px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
+
+  /* CHARTS LAYOUT */
+  .charts-row {
+    display: grid;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .charts-row.two-col { grid-template-columns: 1fr 1fr; }
+  .charts-row.three-col { grid-template-columns: 2fr 1fr; }
+  .charts-row.one-col { grid-template-columns: 1fr; }
+
+  .chart-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .chart-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* VBAR CHART */
+  .vbar-container { display: flex; align-items: flex-end; gap: 10px; height: 200px; margin-top: 16px; }
+  .vbar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+  .vbar-bar { width: 100%; border-radius: 6px 6px 0 0; min-height: 4px; position: relative; transition: opacity 0.2s; }
+  .vbar-bar:hover { opacity: 0.85; }
+  .vbar-val { font-size: 10px; font-weight: 700; color: var(--accent); }
+  .vbar-label { font-size: 10px; color: var(--muted); text-align: center; white-space: nowrap; }
+
+  /* HBAR CHART */
+  .hbar-list { display: flex; flex-direction: column; gap: 14px; margin-top: 16px; }
+  .hbar-item { display: flex; flex-direction: column; gap: 5px; }
+  .hbar-header { display: flex; justify-content: space-between; align-items: center; }
+  .hbar-name { font-size: 13px; color: var(--text); font-weight: 500; }
+  .hbar-pct { font-size: 12px; font-weight: 700; }
+  .hbar-track { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+  .hbar-fill { height: 100%; border-radius: 4px; }
+
+  /* DONUT */
+  .donut-wrap { display: flex; align-items: center; gap: 28px; margin-top: 16px; flex-wrap: wrap; }
+  .donut-legend { display: flex; flex-direction: column; gap: 12px; flex: 1; min-width: 160px; }
+  .legend-item { display: flex; align-items: center; gap: 10px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { font-size: 12px; color: var(--muted); flex: 1; }
+  .legend-val { font-size: 13px; font-weight: 700; color: var(--text); }
+
+  /* LINE CHART */
+  .line-chart-wrap { margin-top: 16px; }
+  .line-x-labels { display: flex; justify-content: space-between; margin-top: 8px; }
+  .line-x-label { font-size: 10px; color: var(--muted); }
+
+  /* PROPERTIES TABLE */
+  .prop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+  .prop-item {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .prop-key { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 6px; }
+  .prop-val { font-size: 16px; font-weight: 700; color: var(--accent); font-family: 'Orbitron', monospace; }
+  .prop-unit { font-size: 11px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    margin-top: 48px;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+  }
+
+  footer strong { color: var(--accent); }
+
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts-row.two-col { grid-template-columns: 1fr; }
+    .charts-row.three-col { grid-template-columns: 1fr; }
+    .prop-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 500px) {
+    .stat-grid { grid-template-columns: 1fr; }
+  }
+
+  .glow-text { text-shadow: 0 0 20px rgba(0,212,255,0.5); }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  .trend-up { color: var(--accent3); font-size: 11px; font-weight: 700; }
+  .trend-dn { color: var(--accent5); font-size: 11px; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">⚡ Element 3 · Periodic Table</div>
+      <h1 class="glow-text">LITHIUM<br>WHITE GOLD</h1>
+      <p class="hero-sub">The lightest metal on Earth and the cornerstone of the global clean energy transition — powering electric vehicles, grid storage, and portable electronics at unprecedented scale.</p>
+      <div class="hero-pills">
+        <span class="pill pill-blue">Atomic No. 3</span>
+        <span class="pill pill-purple">Group 1 Alkali</span>
+        <span class="pill pill-green">Strategic Metal</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Lithium Atom SVG Illustration -->
+      <svg width="280" height="280" viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="nucGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00d4ff"/>
+            <stop offset="100%" stop-color="#0060aa"/>
+          </radialGradient>
+          <radialGradient id="eGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c084fc"/>
+            <stop offset="100%" stop-color="#7c3aed"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Outer orbit 1 -->
+        <ellipse cx="140" cy="140" rx="120" ry="48" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.25" fill="none"/>
+        <!-- Outer orbit 2 rotated 60deg -->
+        <ellipse cx="140" cy="140" rx="120" ry="48" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.25" fill="none" transform="rotate(60 140 140)"/>
+        <!-- Outer orbit 3 rotated 120deg -->
+        <ellipse cx="140" cy="140" rx="120" ry="48" stroke="#10b981" stroke-width="1" stroke-opacity="0.25" fill="none" transform="rotate(120 140 140)"/>
+        <!-- Inner orbit K shell -->
+        <ellipse cx="140" cy="140" rx="60" ry="24" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.5" fill="none"/>
+        <ellipse cx="140" cy="140" rx="60" ry="24" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.5" fill="none" transform="rotate(60 140 140)"/>
+        <!-- Glow rings -->
+        <circle cx="140" cy="140" r="38" fill="rgba(0,212,255,0.06)"/>
+        <circle cx="140" cy="140" r="28" fill="rgba(0,212,255,0.08)"/>
+        <!-- Nucleus -->
+        <circle cx="140" cy="140" r="22" fill="url(#nucGrad)" filter="url(#glow)"/>
+        <text x="140" y="137" text-anchor="middle" font-family="Orbitron,monospace" font-size="12" font-weight="900" fill="white">Li</text>
+        <text x="140" y="150" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="rgba(255,255,255,0.7)">3</text>
+        <!-- Electrons on orbit 1 -->
+        <circle cx="260" cy="140" r="7" fill="url(#eGrad)" filter="url(#glow)"/>
+        <circle cx="20" cy="140" r="7" fill="url(#eGrad)" filter="url(#glow)"/>
+        <!-- Electrons on rotated orbit (K shell 2e) -->
+        <circle cx="110" cy="118" r="6" fill="#00d4ff" filter="url(#glow)"/>
+        <circle cx="170" cy="162" r="6" fill="#00d4ff" filter="url(#glow)"/>
+        <!-- Valence electron on L shell -->
+        <circle cx="185" cy="92" r="7" fill="#f59e0b" filter="url(#glow)" stroke="#fbbf24" stroke-width="1.5"/>
+        <!-- Labels -->
+        <text x="252" y="132" font-size="9" fill="#a78bfa" font-family="Inter,sans-serif">e⁻</text>
+        <text x="12" y="132" font-size="9" fill="#a78bfa" font-family="Inter,sans-serif">e⁻</text>
+        <text x="192" y="88" font-size="9" fill="#f59e0b" font-family="Inter,sans-serif">e⁻</text>
+        <!-- Periodic block -->
+        <rect x="4" y="220" width="60" height="52" rx="6" fill="rgba(0,212,255,0.08)" stroke="rgba(0,212,255,0.3)" stroke-width="1"/>
+        <text x="34" y="239" text-anchor="middle" font-size="8" fill="var(--muted)" font-family="Inter,sans-serif">ELEMENT</text>
+        <text x="34" y="254" text-anchor="middle" font-size="18" font-weight="900" fill="#00d4ff" font-family="Orbitron,monospace">Li</text>
+        <text x="34" y="266" text-anchor="middle" font-size="7" fill="var(--muted)" font-family="Inter,sans-serif">Lithium</text>
+        <text x="34" y="276" text-anchor="middle" font-size="8" fill="#a78bfa" font-family="Inter,sans-serif">6.941 u</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- HERO STATS -->
+  <div class="stat-grid">
+    <div class="stat-card c1">
+      <div class="stat-label">Global Production 2023</div>
+      <div class="stat-value sv1">180K</div>
+      <div class="stat-desc">metric tons LCE · Up 23% YoY</div>
+      <div style="margin-top:10px" class="trend-up">▲ 23% vs 2022</div>
+    </div>
+    <div class="stat-card c2">
+      <div class="stat-label">Market Size 2030 (est.)</div>
+      <div class="stat-value sv2">$97B</div>
+      <div class="stat-desc">USD · CAGR ~15% through 2030</div>
+      <div style="margin-top:10px" class="trend-up">▲ 15% CAGR</div>
+    </div>
+    <div class="stat-card c3">
+      <div class="stat-label">Global Reserves</div>
+      <div class="stat-value sv3">98MT</div>
+      <div class="stat-desc">million tonnes · ~400yr supply est.</div>
+      <div style="margin-top:10px;font-size:11px;color:var(--accent3)">● Primarily in South America</div>
+    </div>
+    <div class="stat-card c4">
+      <div class="stat-label">EV Battery Share</div>
+      <div class="stat-value sv4">74%</div>
+      <div class="stat-desc">of global lithium demand in 2023</div>
+      <div style="margin-top:10px" class="trend-up">▲ from 58% in 2020</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: Production by Country (VBAR) + Demand by Sector (HBAR) -->
+  <div class="charts-row two-col">
+
+    <!-- VERTICAL BAR: Top Lithium Producers -->
+    <div class="chart-card">
+      <div class="section-title">Top Lithium Producers</div>
+      <div class="section-sub">Mine production in thousand metric tons LCE (2023)</div>
+      <div class="vbar-container">
+        <div class="vbar-group">
+          <div class="vbar-val">85</div>
+          <div class="vbar-bar" style="height:100%; background:linear-gradient(180deg,#00d4ff,#0080cc);"></div>
+          <div class="vbar-label">Australia</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">42</div>
+          <div class="vbar-bar" style="height:49%; background:linear-gradient(180deg,#7c3aed,#4c1d95);"></div>
+          <div class="vbar-label">Chile</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">26</div>
+          <div class="vbar-bar" style="height:30%; background:linear-gradient(180deg,#10b981,#065f46);"></div>
+          <div class="vbar-label">China</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">9.5</div>
+          <div class="vbar-bar" style="height:11%; background:linear-gradient(180deg,#f59e0b,#b45309);"></div>
+          <div class="vbar-label">Argentina</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">7.0</div>
+          <div class="vbar-bar" style="height:8%; background:linear-gradient(180deg,#ef4444,#7f1d1d);"></div>
+          <div class="vbar-label">Brazil</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">4.8</div>
+          <div class="vbar-bar" style="height:5.6%; background:linear-gradient(180deg,#06b6d4,#0e7490);"></div>
+          <div class="vbar-label">Zimbabwe</div>
+        </div>
+        <div class="vbar-group">
+          <div class="vbar-val">2.4</div>
+          <div class="vbar-bar" style="height:2.8%; background:linear-gradient(180deg,#8b5cf6,#4c1d95);"></div>
+          <div class="vbar-label">Portugal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HORIZONTAL BAR: Demand by End Use -->
+    <div class="chart-card">
+      <div class="section-title">Demand by End-Use Sector</div>
+      <div class="section-sub">Share of global lithium demand in 2023</div>
+      <div class="hbar-list">
+        <div class="hbar-item">
+          <div class="hbar-header">
+            <span class="hbar-name">🚗 Electric Vehicles</span>
+            <span class="hbar-pct" style="color:#00d4ff">74%</span>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:74%;background:linear-gradient(90deg,#00d4ff,#0080ff);"></div>
+          </div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-header">
+            <span class="hbar-name">📱 Consumer Electronics</span>
+            <span class="hbar-pct" style="color:#7c3aed">10%</span>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:10%;background:linear-gradient(90deg,#7c3aed,#a78bfa);"></div>
+          </div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-header">
+            <span class="hbar-name">🔋 Grid Energy Storage</span>
+            <span class="hbar-pct" style="color:#10b981">7%</span>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:7%;background:linear-gradient(90deg,#10b981,#34d399);"></div>
+          </div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-header">
+            <span class="hbar-name">🔩 Industrial & Ceramics</span>
+            <span class="hbar-pct" style="color:#f59e0b">5%</span>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:5%;background:linear-gradient(90deg,#f59e0b,#fbbf24);"></div>
+          </div>
+        </div>
+        <div class="hbar-item">
+          <div class="hbar-header">
+            <span class="hbar-name">💊 Pharma & Lubricants</span>
+            <span class="hbar-pct" style="color:#ef4444">4%</span>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:4%;background:linear-gradient(90deg,#ef4444,#f87171);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical properties mini-grid -->
+      <div style="margin-top:24px;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:12px;">Key Physical Properties</div>
+        <div class="prop-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="prop-item">
+            <div class="prop-key">Density</div>
+            <div class="prop-val">0.534</div>
+            <div class="prop-unit">g/cm³</div>
+          </div>
+          <div class="prop-item">
+            <div class="prop-key">Melting Pt.</div>
+            <div class="prop-val">180.5</div>
+            <div class="prop-unit">°C</div>
+          </div>
+          <div class="prop-item">
+            <div class="prop-key">Atomic Mass</div>
+            <div class="prop-val">6.941</div>
+            <div class="prop-unit">u</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 2: Price History (LINE) + Reserve Distribution (DONUT) -->
+  <div class="charts-row three-col">
+
+    <!-- LINE CHART: Lithium Price History -->
+    <div class="chart-card">
+      <div class="section-title">Lithium Carbonate Price History</div>
+      <div class="section-sub">USD per metric ton · 2018–2024 (lithium carbonate 99.5% purity)</div>
+      <div class="line-chart-wrap">
+        <svg viewBox="0 0 600 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="lineStroke" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="50%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+          <!-- Grid lines -->
+          <line x1="40" y1="10" x2="40" y2="185" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <line x1="40" y1="185" x2="590" y2="185" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <line x1="40" y1="140" x2="590" y2="140" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="95" x2="590" y2="95" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="50" x2="590" y2="50" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- Y-axis labels -->
+          <text x="32" y="189" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">0</text>
+          <text x="32" y="144" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">20K</text>
+          <text x="32" y="99" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">40K</text>
+          <text x="32" y="54" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">60K</text>
+          <!-- Area fill (approx data: 2018:10K, 2019:9K, 2020:7K, 2021:17K, 2022:70K, 2023:25K, 2024:14K) -->
+          <!-- Scale: 70K = 175px height, so 1K = 2.5px, y = 185 - val*2.5 -->
+          <!-- 10K→160, 9K→162.5, 7K→167.5, 17K→142.5, 70K→10, 25K→122.5, 14K→150 -->
+          <!-- x positions evenly: 40,130,220,310,400,490,580 -->
+          <path d="M40,160 L130,162.5 L220,167.5 L310,142.5 L400,10 L490,122.5 L580,150 L580,185 L40,185 Z"
+                fill="url(#lineGrad)" opacity="0.7"/>
+          <polyline points="40,160 130,162.5 220,167.5 310,142.5 400,10 490,122.5 580,150"
+                fill="none" stroke="url(#lineStroke)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Data points -->
+          <circle cx="40" cy="160" r="4" fill="#7c3aed" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="130" cy="162.5" r="4" fill="#6d5aed" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="220" cy="167.5" r="4" fill="#0080ff" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="310" cy="142.5" r="4" fill="#00d4ff" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="400" cy="10" r="5" fill="#f59e0b" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="490" cy="122.5" r="4" fill="#10b981" stroke="#0d1a2e" stroke-width="2"/>
+          <circle cx="580" cy="150" r="4" fill="#10b981" stroke="#0d1a2e" stroke-width="2"/>
+          <!-- Peak label -->
+          <rect x="360" y="0" width="85" height="20" rx="4" fill="rgba(245,158,11,0.2)" stroke="rgba(245,158,11,0.5)" stroke-width="1"/>
+          <text x="402" y="13" font-size="9" fill="#f59e0b" text-anchor="middle" font-family="Inter,sans-serif" font-weight="700">PEAK ~$70K</text>
+          <line x1="400" y1="10" x2="400" y2="21" stroke="rgba(245,158,11,0.5)" stroke-width="1" stroke-dasharray="2,2"/>
+          <!-- Value labels on last point -->
+          <text x="580" y="144" font-size="9" fill="#10b981" text-anchor="middle" font-family="Inter,sans-serif">$14K</text>
+        </svg>
+        <div class="line-x-labels">
+          <span class="line-x-label">2018</span>
+          <span class="line-x-label">2019</span>
+          <span class="line-x-label">2020</span>
+          <span class="line-x-label">2021</span>
+          <span class="line-x-label">2022</span>
+          <span class="line-x-label">2023</span>
+          <span class="line-x-label">2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DONUT: Reserve Distribution -->
+    <div class="chart-card">
+      <div class="section-title">World Li Reserves</div>
+      <div class="section-sub">By country share (% of 98MT total)</div>
+      <div class="donut-wrap" style="flex-direction:column;align-items:center;gap:20px;">
+        <svg viewBox="0 0 200 200" width="170" height="170">
+          <defs>
+            <filter id="ds">
+              <feDropShadow dx="0" dy="0" stdDeviation="4" flood-color="rgba(0,212,255,0.3)"/>
+            </filter>
+          </defs>
+          <!-- Donut segments: Bolivia 23%, Argentina 20%, Chile 11%, USA 9%, Australia 8%, Others 29% -->
+          <!-- Circumference = 2π×70 ≈ 439.8 -->
+          <!-- strokeDasharray = pct/100 * 439.8, offset accumulates -->
+          <!-- Bolivia 23%: 101.2, offset 0 -->
+          <!-- Argentina 20%: 87.96, offset 101.2 -->
+          <!-- Chile 11%: 48.38, offset 189.16 -->
+          <!-- USA 9%: 39.58, offset 237.54 -->
+          <!-- Australia 8%: 35.18, offset 277.12 -->
+          <!-- Others 29%: 127.54, offset 312.3 -->
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#0a1525" stroke-width="36"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#3b82f6" stroke-width="34"
+                  stroke-dasharray="101.2 338.6" stroke-dashoffset="109.95" stroke-linecap="butt" filter="url(#ds)"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#7c3aed" stroke-width="34"
+                  stroke-dasharray="87.96 351.84" stroke-dashoffset="8.75" stroke-linecap="butt"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#10b981" stroke-width="34"
+                  stroke-dasharray="48.38 391.42" stroke-dashoffset="-79.21" stroke-linecap="butt"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#f59e0b" stroke-width="34"
+                  stroke-dasharray="39.58 400.22" stroke-dashoffset="-127.59" stroke-linecap="butt"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#ef4444" stroke-width="34"
+                  stroke-dasharray="35.18 404.62" stroke-dashoffset="-167.17" stroke-linecap="butt"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#475569" stroke-width="34"
+                  stroke-dasharray="127.54 312.26" stroke-dashoffset="-202.35" stroke-linecap="butt"/>
+          <!-- Center text -->
+          <text x="100" y="95" text-anchor="middle" font-family="Orbitron,monospace" font-size="16" font-weight="900" fill="white">98</text>
+          <text x="100" y="110" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#6b8ba4">MT TOTAL</text>
+        </svg>
+        <div class="donut-legend" style="width:100%">
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#3b82f6"></div>
+            <span class="legend-label">Bolivia</span>
+            <span class="legend-val">23%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#7c3aed"></div>
+            <span class="legend-label">Argentina</span>
+            <span class="legend-val">20%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#10b981"></div>
+            <span class="legend-label">Chile</span>
+            <span class="legend-val">11%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#f59e0b"></div>
+            <span class="legend-label">USA</span>
+            <span class="legend-val">9%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#ef4444"></div>
+            <span class="legend-label">Australia</span>
+            <span class="legend-val">8%</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:#475569"></div>
+            <span class="legend-label">Others</span>
+            <span class="legend-val">29%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 3: Demand Forecast (VBAR grouped) + Battery Chemistry -->
+  <div class="charts-row two-col">
+
+    <!-- Demand Forecast -->
+    <div class="chart-card">
+      <div class="section-title">Lithium Demand Forecast</div>
+      <div class="section-sub">Thousand metric tons LCE · 2020–2030 projected</div>
+      <svg viewBox="0 0 540 220" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="barForecast" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00d4ff"/>
+            <stop offset="100%" stop-color="#0040aa"/>
+          </linearGradient>
+          <linearGradient id="barForecast2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#4c1d95"/>
+          </linearGradient>
+        </defs>
+        <!-- Y grid -->
+        <line x1="50" y1="10" x2="50" y2="185" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+        <line x1="50" y1="185" x2="530" y2="185" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+        <line x1="50" y1="140" x2="530" y2="140" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="50" y1="95" x2="530" y2="95" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="50" y1="48" x2="530" y2="48" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>
+        <!-- Y labels: scale 0-800K, 185→0, 140→200K, 95→400K, 48→600K, 10→800K -->
+        <text x="44" y="189" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">0</text>
+        <text x="44" y="144" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">200</text>
+        <text x="44" y="99" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">400</text>
+        <text x="44" y="52" font-size="9" fill="#6b8ba4" text-anchor="end" font-family="Inter,sans-serif">600</text>
+        <!-- data: 2020:65K, 2021:100K, 2022:140K, 2023:180K, 2025:260K, 2027:400K, 2030:600K -->
+        <!-- scale: 800K maps to 175px, 1K=0.21875px, y=185-val*0.21875 -->
+        <!-- bars x positions: 65,125,185,245,305,370,440,510 -->
+        <!-- 2020:65K→170.7, 2021:100K→162.9, 2022:140K→154.4, 2023:180K→145.6, 2025:260K→128.1, 2027:400K→97.5, 2030:600K→53.9 -->
+        <rect x="60" y="170.7" width="28" height="14.3" rx="3" fill="url(#barForecast)"/>
+        <rect x="120" y="162.9" width="28" height="22.1" rx="3" fill="url(#barForecast)"/>
+        <rect x="180" y="154.4" width="28" height="30.6" rx="3" fill="url(#barForecast)"/>
+        <rect x="240" y="145.6" width="28" height="39.4" rx="3" fill="url(#barForecast)"/>
+        <rect x="300" y="128.1" width="28" height="56.9" rx="3" fill="url(#barForecast2)" opacity="0.85"/>
+        <rect x="360" y="97.5" width="28" height="87.5" rx="3" fill="url(#barForecast2)" opacity="0.85"/>
+        <rect x="430" y="53.9" width="28" height="131.1" rx="3" fill="url(#barForecast2)" opacity="0.85"/>
+        <!-- X labels -->
+        <text x="74" y="200" font-size="9" fill="#6b8ba4" text-anchor="middle" font-family="Inter,sans-serif">2020</text>
+        <text x="134" y="200" font-size="9" fill="#6b8ba4" text-anchor="middle" font-family="Inter,sans-serif">2021</text>
+        <text x="194" y="200" font-size="9" fill="#6b8ba4" text-anchor="middle" font-family="Inter,sans-serif">2022</text>
+        <text x="254" y="200" font-size="9" fill="#6b8ba4" text-anchor="middle" font-family="Inter,sans-serif">2023</text>
+        <text x="314" y="200" font-size="9" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">2025</text>
+        <text x="374" y="200" font-size="9" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">2027</text>
+        <text x="444" y="200" font-size="9" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">2030</text>
+        <!-- Value annotations -->
+        <text x="74" y="167" font-size="8" fill="#00d4ff" text-anchor="middle" font-family="Inter,sans-serif">65</text>
+        <text x="134" y="159" font-size="8" fill="#00d4ff" text-anchor="middle" font-family="Inter,sans-serif">100</text>
+        <text x="194" y="151" font-size="8" fill="#00d4ff" text-anchor="middle" font-family="Inter,sans-serif">140</text>
+        <text x="254" y="142" font-size="8" fill="#00d4ff" text-anchor="middle" font-family="Inter,sans-serif">180</text>
+        <text x="314" y="124" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">260</text>
+        <text x="374" y="93" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">400</text>
+        <text x="444" y="49" font-size="8" fill="#a78bfa" text-anchor="middle" font-family="Inter,sans-serif">600</text>
+        <!-- Legend -->
+        <rect x="455" y="12" width="10" height="10" rx="2" fill="url(#barForecast)"/>
+        <text x="470" y="21" font-size="8" fill="#00d4ff" font-family="Inter,sans-serif">Actual</text>
+        <rect x="455" y="27" width="10" height="10" rx="2" fill="url(#barForecast2)"/>
+        <text x="470" y="36" font-size="8" fill="#a78bfa" font-family="Inter,sans-serif">Forecast</text>
+        <!-- Thousand label -->
+        <text x="50" y="10" font-size="8" fill="#6b8ba4" font-family="Inter,sans-serif">KT</text>
+      </svg>
+    </div>
+
+    <!-- Battery Chemistry Breakdown -->
+    <div class="chart-card">
+      <div class="section-title">Battery Chemistry Share</div>
+      <div class="section-sub">Li-ion cathode technology mix in EVs (2023)</div>
+
+      <div style="margin-top:8px">
+        <!-- NMC -->
+        <div style="margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--text)">NMC (Nickel Manganese Cobalt)</div>
+              <div style="font-size:11px;color:var(--muted)">High energy density · dominant in premium EVs</div>
+            </div>
+            <div style="font-family:'Orbitron',monospace;font-size:16px;color:#00d4ff;font-weight:700;">47%</div>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:47%;background:linear-gradient(90deg,#00d4ff,#0060cc);height:10px;border-radius:5px;"></div>
+          </div>
+        </div>
+        <!-- LFP -->
+        <div style="margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--text)">LFP (Lithium Iron Phosphate)</div>
+              <div style="font-size:11px;color:var(--muted)">Long cycle life · dominant in China market</div>
+            </div>
+            <div style="font-family:'Orbitron',monospace;font-size:16px;color:#10b981;font-weight:700;">38%</div>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:38%;background:linear-gradient(90deg,#10b981,#065f46);height:10px;border-radius:5px;"></div>
+          </div>
+        </div>
+        <!-- NCA -->
+        <div style="margin-bottom:18px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--text)">NCA (Nickel Cobalt Aluminium)</div>
+              <div style="font-size:11px;color:var(--muted)">Used by Tesla · high performance</div>
+            </div>
+            <div style="font-family:'Orbitron',monospace;font-size:16px;color:#f59e0b;font-weight:700;">9%</div>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:9%;background:linear-gradient(90deg,#f59e0b,#b45309);height:10px;border-radius:5px;"></div>
+          </div>
+        </div>
+        <!-- Other -->
+        <div style="margin-bottom:6px;">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <div>
+              <div style="font-size:13px;font-weight:600;color:var(--text)">Other Chemistries</div>
+              <div style="font-size:11px;color:var(--muted)">LMO, solid-state (emerging) etc.</div>
+            </div>
+            <div style="font-family:'Orbitron',monospace;font-size:16px;color:#8b5cf6;font-weight:700;">6%</div>
+          </div>
+          <div class="hbar-track">
+            <div class="hbar-fill" style="width:6%;background:linear-gradient(90deg,#8b5cf6,#4c1d95);height:10px;border-radius:5px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recycling stat -->
+      <div style="margin-top:20px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.25);border-radius:10px;padding:14px;display:flex;align-items:center;gap:16px;">
+        <div>
+          <svg width="36" height="36" viewBox="0 0 36 36">
+            <path d="M18 4 L28 22 H22 V32 H14 V22 H8 Z" fill="none" stroke="#10b981" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M6 16 Q2 10 8 6 Q14 2 18 8" fill="none" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--accent3);font-weight:700;">Recycling Rate (2023): ~5%</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">Target: 70% by 2030 (EU Battery Regulation)</div>
+        </div>
+        <div style="margin-left:auto;font-family:'Orbitron',monospace;font-size:22px;color:#10b981;font-weight:900;">5%</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECTION 4: The Lithium Triangle + Applications -->
+  <div class="charts-row one-col">
+    <div class="chart-card">
+      <div class="section-title">The Lithium Triangle – Salar Brine Extraction</div>
+      <div class="section-sub">South America's Atacama Desert holds ~54% of global lithium resources in salt flat brines</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:16px;">
+
+        <!-- SVG Map illustration of Lithium Triangle -->
+        <div style="grid-column:1/2;display:flex;justify-content:center;align-items:center;">
+          <svg viewBox="0 0 240 300" width="200" height="260" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="salarGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="rgba(0,212,255,0.5)"/>
+                <stop offset="100%" stop-color="rgba(0,80,200,0.15)"/>
+              </radialGradient>
+            </defs>
+            <!-- Simple South America silhouette / Atacama region -->
+            <path d="M80,10 Q130,8 160,25 Q185,45 190,80 Q195,110 180,140 Q165,170 170,200 Q175,230 155,265 Q130,285 110,270 Q90,260 75,240 Q55,215 60,185 Q65,155 50,130 Q35,105 40,75 Q45,45 65,25 Z"
+                  fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+            <!-- Chile strip -->
+            <path d="M75,80 Q70,100 68,130 Q65,160 60,190 Q68,215 78,235 Q88,255 90,265 Q100,270 105,260 Q98,235 95,210 Q88,175 90,150 Q92,120 95,100 Z"
+                  fill="rgba(16,185,129,0.2)" stroke="rgba(16,185,129,0.4)" stroke-width="1"/>
+            <!-- Bolivia highlight -->
+            <path d="M100,80 Q130,75 155,90 Q165,110 155,130 Q140,140 115,135 Q95,130 92,115 Q90,100 100,80 Z"
+                  fill="rgba(59,130,246,0.25)" stroke="rgba(59,130,246,0.5)" stroke-width="1"/>
+            <!-- Argentina upper region -->
+            <path d="M92,115 Q115,135 155,130 Q168,145 165,170 Q150,175 130,165 Q110,155 95,150 Q88,135 92,115 Z"
+                  fill="rgba(124,58,237,0.2)" stroke="rgba(124,58,237,0.4)" stroke-width="1"/>
+            <!-- Triangle outline -->
+            <polygon points="82,220 147,85 165,165" fill="none" stroke="rgba(0,212,255,0.6)" stroke-width="1.5" stroke-dasharray="5,3"/>
+            <!-- Salar dots -->
+            <circle cx="90" cy="170" r="8" fill="url(#salarGrad)" stroke="rgba(0,212,255,0.8)" stroke-width="1.5"/>
+            <circle cx="135" cy="100" r="9" fill="url(#salarGrad)" stroke="rgba(59,130,246,0.8)" stroke-width="1.5"/>
+            <circle cx="155" cy="145" r="7" fill="url(#salarGrad)" stroke="rgba(124,58,237,0.8)" stroke-width="1.5"/>
+            <!-- Labels -->
+            <text x="72" y="186" font-size="8" fill="#10b981" font-family="Inter,sans-serif" font-weight="700">Chile</text>
+            <text x="118" y="97" font-size="8" fill="#3b82f6" font-family="Inter,sans-serif" font-weight="700">Bolivia</text>
+            <text x="140" y="158" font-size="8" fill="#a78bfa" font-family="Inter,sans-serif" font-weight="700">Argentina</text>
+            <!-- Li symbol pulsing -->
+            <circle cx="126" cy="138" r="12" fill="rgba(0,212,255,0.1)" stroke="rgba(0,212,255,0.4)" stroke-width="1"/>
+            <text x="126" y="143" text-anchor="middle" font-size="10" fill="#00d4ff" font-family="Orbitron,monospace" font-weight="900">Li</text>
+            <!-- Title -->
+            <text x="120" y="295" text-anchor="middle" font-size="9" fill="#6b8ba4" font-family="Inter,sans-serif">Lithium Triangle</text>
+          </svg>
+        </div>
+
+        <!-- Country stats -->
+        <div style="grid-column:2/3;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+          <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:10px;padding:16px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#10b981;margin-bottom:6px;">🇨🇱 Chile</div>
+            <div style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:#10b981;">9.3 MT</div>
+            <div style="font-size:11px;color:var(--muted)">Reserves · Atacama Salar</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--muted)">SQM & Albemarle major producers</div>
+          </div>
+          <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:10px;padding:16px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#3b82f6;margin-bottom:6px;">🇧🇴 Bolivia</div>
+            <div style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:#3b82f6;">21 MT</div>
+            <div style="font-size:11px;color:var(--muted)">Resources · Salar de Uyuni</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--muted)">World's largest single deposit</div>
+          </div>
+          <div style="background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.2);border-radius:10px;padding:16px;">
+            <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:#a78bfa;margin-bottom:6px;">🇦🇷 Argentina</div>
+            <div style="font-family:'Orbitron',monospace;font-size:24px;font-weight:900;color:#a78bfa;">20 MT</div>
+            <div style="font-size:11px;color:var(--muted)">Reserves · Puna region</div>
+            <div style="margin-top:8px;font-size:11px;color:var(--muted)">Rapidly expanding production</div>
+          </div>
+        </div>
+
+        <!-- Applications -->
+        <div style="grid-column:3/4;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);margin-bottom:4px;">Key Applications</div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);border-radius:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28"><rect x="4" y="8" width="20" height="14" rx="2" fill="none" stroke="#00d4ff" stroke-width="1.5"/><rect x="6" y="10" width="6" height="10" rx="1" fill="rgba(0,212,255,0.4)"/><rect x="13" y="10" width="6" height="10" rx="1" fill="rgba(0,212,255,0.2)"/><rect x="24" y="11" width="2" height="6" rx="1" fill="#00d4ff"/></svg>
+            <div><div style="font-size:12px;font-weight:600;">EV Batteries</div><div style="font-size:10px;color:var(--muted);">6-10 kg Li per vehicle</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(124,58,237,0.06);border:1px solid rgba(124,58,237,0.2);border-radius:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28"><rect x="8" y="4" width="12" height="20" rx="2" fill="none" stroke="#a78bfa" stroke-width="1.5"/><rect x="10" y="6" width="8" height="12" rx="1" fill="rgba(124,58,237,0.3)"/><circle cx="14" cy="21" r="1.5" fill="#a78bfa"/></svg>
+            <div><div style="font-size:12px;font-weight:600;">Smartphones</div><div style="font-size:10px;color:var(--muted);">~3-5g Li per device</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28"><polygon points="14,3 22,8 22,20 14,25 6,20 6,8" fill="none" stroke="#10b981" stroke-width="1.5"/><line x1="14" y1="3" x2="14" y2="25" stroke="#10b981" stroke-width="0.8" stroke-opacity="0.4"/><circle cx="14" cy="14" r="4" fill="rgba(16,185,129,0.3)" stroke="#10b981" stroke-width="1"/></svg>
+            <div><div style="font-size:12px;font-weight:600;">Grid Storage</div><div style="font-size:10px;color:var(--muted);">MWh-scale installations</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="9" fill="none" stroke="#f59e0b" stroke-width="1.5"/><path d="M14 5 L14 14 L20 14" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/><circle cx="14" cy="14" r="2" fill="#f59e0b"/></svg>
+            <div><div style="font-size:12px;font-weight:600;">Pharma (Bipolar)</div><div style="font-size:10px;color:var(--muted);">Lithium carbonate therapy</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;padding:12px;background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-radius:8px;">
+            <svg width="28" height="28" viewBox="0 0 28 28"><path d="M7 22 L14 6 L21 22 Z" fill="none" stroke="#ef4444" stroke-width="1.5"/><line x1="9.5" y1="17" x2="18.5" y2="17" stroke="#ef4444" stroke-width="1.5"/></svg>
+            <div><div style="font-size:12px;font-weight:600;">Aerospace Alloys</div><div style="font-size:10px;color:var(--muted);">Al-Li lightweight structures</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">📚 Data Sources & References</div>
+        <div><strong>USGS Mineral Commodity Summaries 2024</strong> — Lithium production & reserve figures (usgs.gov)</div>
+        <div><strong>IEA Global EV Outlook 2023</strong> — EV battery demand, market projections (iea.org)</div>
+        <div><strong>BloombergNEF Lithium Price Tracker 2024</strong> — Historical price data (bloomberg.com/nef)</div>
+        <div><strong>Benchmark Mineral Intelligence 2024</strong> — Battery chemistry market share, demand forecasts</div>
+        <div><strong>Goldman Sachs Commodities Research 2023</strong> — Market size projections and CAGR estimates</div>
+        <div><strong>EU Battery Regulation 2023/1542</strong> — Recycling targets and battery passport requirements</div>
+        <div><strong>Roskill Lithium Market Report 2023</strong> — Lithium Triangle resource data and production profiles</div>
+      </div>
+      <div>
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;">⚠️ Disclaimer</div>
+        <div style="line-height:1.9;">All statistics represent best available data as of 2023–2024. Market forecasts are projections and subject to change. Price data reflects spot market conditions. Reserve estimates per USGS methodology. This infographic is for informational purposes only and does not constitute investment advice.</div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+          <span class="badge">⚡ Energy Data</span>
+          <span class="badge">🔬 Chemistry</span>
+          <span class="badge">📊 Markets</span>
+          <span class="badge">🌍 Geopolitics</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:10px;letter-spacing:1px;">
+      LITHIUM INFOGRAPHIC · DATA VISUALIZATION · © 2024 · ELEMENT 3 · Li · 6.941 u · [He] 2s¹
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
