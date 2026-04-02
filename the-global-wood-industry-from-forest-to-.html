@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Global Wood Industry: From Forest to Furniture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0d14;
+    --surface: #111620;
+    --surface2: #161c2a;
+    --surface3: #1e2537;
+    --border: #2a3350;
+    --accent1: #4ade80;
+    --accent2: #22d3ee;
+    --accent3: #f59e0b;
+    --accent4: #a78bfa;
+    --accent5: #f87171;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --text3: #64748b;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a0d14 0%, #111e2e 50%, #0a0d14 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(74,222,128,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .header-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(74,222,128,0.12);
+    color: var(--accent1);
+    border: 1px solid rgba(74,222,128,0.3);
+    border-radius: 50px;
+    padding: 6px 18px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #e2e8f0 0%, #4ade80 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    color: var(--text2);
+    font-size: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* MAIN GRID */
+  .main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.2s;
+  }
+
+  .card:hover {
+    border-color: rgba(74,222,128,0.3);
+    transform: translateY(-2px);
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover::after { opacity: 1; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 0.3px;
+  }
+
+  .card-sub {
+    font-size: 11px;
+    color: var(--text3);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* HERO STATS */
+  .hero-stat {
+    text-align: center;
+    padding: 24px 16px;
+  }
+
+  .hero-stat .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-stat .label {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+    max-width: 130px;
+    margin: 0 auto;
+  }
+
+  .hero-stat .change {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 50px;
+    margin-top: 8px;
+  }
+
+  .change-up {
+    background: rgba(74,222,128,0.12);
+    color: var(--accent1);
+    border: 1px solid rgba(74,222,128,0.2);
+  }
+
+  .change-down {
+    background: rgba(248,113,113,0.12);
+    color: var(--accent5);
+    border: 1px solid rgba(248,113,113,0.2);
+  }
+
+  /* GRID SPANS */
+  .col-3 { grid-column: span 3; }
+  .col-4 { grid-column: span 4; }
+  .col-6 { grid-column: span 6; }
+  .col-7 { grid-column: span 7; }
+  .col-8 { grid-column: span 8; }
+  .col-12 { grid-column: span 12; }
+
+  @media (max-width: 1100px) {
+    .col-3 { grid-column: span 6; }
+    .col-4 { grid-column: span 6; }
+    .col-6 { grid-column: span 12; }
+    .col-7 { grid-column: span 12; }
+    .col-8 { grid-column: span 12; }
+  }
+
+  @media (max-width: 700px) {
+    .col-3 { grid-column: span 12; }
+    .col-4 { grid-column: span 12; }
+  }
+
+  /* DIVIDER */
+  .divider {
+    grid-column: span 12;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    white-space: nowrap;
+  }
+
+  /* BAR CHART VERTICAL */
+  .vbar-container {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 200px;
+    padding-bottom: 30px;
+    position: relative;
+  }
+
+  .vbar-container::after {
+    content: '';
+    position: absolute;
+    bottom: 30px; left: 0; right: 0;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .vbar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .vbar-val {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--text2);
+    white-space: nowrap;
+  }
+
+  .vbar {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: opacity 0.3s;
+    position: relative;
+  }
+
+  .vbar:hover { opacity: 0.8; }
+
+  .vbar-label {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 9px;
+    color: var(--text3);
+    transform: translateY(100%) translateY(6px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* HBAR */
+  .hbar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hbar-item {}
+
+  .hbar-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .hbar-name {
+    font-size: 12px;
+    color: var(--text2);
+    font-weight: 500;
+  }
+
+  .hbar-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .hbar-track {
+    height: 8px;
+    background: var(--surface3);
+    border-radius: 50px;
+    overflow: hidden;
+  }
+
+  .hbar-fill {
+    height: 100%;
+    border-radius: 50px;
+    transition: width 0.6s ease;
+  }
+
+  /* DONUT */
+  .donut-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .donut-svg-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .donut-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .donut-center-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .donut-center-label {
+    font-size: 9px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .legend-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .legend-text {
+    font-size: 11px;
+    color: var(--text2);
+    flex: 1;
+  }
+
+  .legend-pct {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* LINE CHART */
+  .line-chart-wrap {
+    position: relative;
+    width: 100%;
+  }
+
+  .line-y-labels {
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    pointer-events: none;
+  }
+
+  .line-y-label {
+    font-size: 9px;
+    color: var(--text3);
+    line-height: 1;
+  }
+
+  /* PROCESS FLOW */
+  .process-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+
+  .process-step {
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    padding: 0 8px;
+  }
+
+  .process-icon-wrap {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    position: relative;
+  }
+
+  .process-step-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .process-step-desc {
+    font-size: 9px;
+    color: var(--text3);
+    line-height: 1.4;
+  }
+
+  .process-arrow {
+    color: var(--text3);
+    font-size: 20px;
+    flex-shrink: 0;
+    padding: 0 4px;
+    align-self: center;
+    margin-bottom: 20px;
+  }
+
+  /* MINI STAT */
+  .mini-stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .mini-stat {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+
+  .mini-stat-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+
+  .mini-stat-label {
+    font-size: 10px;
+    color: var(--text3);
+    line-height: 1.4;
+  }
+
+  /* INSIGHT BOX */
+  .insight {
+    background: rgba(74,222,128,0.05);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-top: 16px;
+  }
+
+  .insight-icon { flex-shrink: 0; margin-top: 1px; }
+
+  .insight-text {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  .insight-text strong { color: var(--accent1); }
+
+  /* FOOTER */
+  .footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 30px 40px;
+    text-align: center;
+  }
+
+  .footer-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 12px;
+  }
+
+  .footer-sources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 24px;
+    margin-bottom: 16px;
+  }
+
+  .footer-source {
+    font-size: 11px;
+    color: var(--text3);
+  }
+
+  .footer-source span {
+    color: var(--accent2);
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    color: var(--text3);
+    opacity: 0.6;
+  }
+
+  /* GRID LINES BG */
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(42,51,80,0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42,51,80,0.4) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  /* TOOLTIP STYLE ON HOVER */
+  .vbar:hover::before {
+    content: attr(data-tip);
+    position: absolute;
+    top: -26px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 3px 7px;
+    font-size: 9px;
+    color: var(--text);
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--surface3);
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text2);
+    margin-right: 6px;
+    flex-shrink: 0;
+  }
+
+  .section-label {
+    grid-column: span 12;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .sl-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent1);
+    opacity: 0.5;
+  }
+
+  .sl-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .sl-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="grid-bg" style="opacity:0.4;"></div>
+  <div style="position:relative;z-index:1;">
+    <div class="header-icon">
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+        <!-- Forest tree illustration -->
+        <circle cx="36" cy="36" r="36" fill="rgba(74,222,128,0.08)" stroke="rgba(74,222,128,0.2)" stroke-width="1"/>
+        <!-- Tree 1 -->
+        <polygon points="36,8 22,34 50,34" fill="#22c55e" opacity="0.9"/>
+        <polygon points="36,18 20,42 52,42" fill="#16a34a" opacity="0.85"/>
+        <rect x="32" y="42" width="8" height="14" rx="2" fill="#92400e"/>
+        <!-- Small trees -->
+        <polygon points="18,28 10,46 26,46" fill="#22c55e" opacity="0.6"/>
+        <rect x="16" y="46" width="5" height="8" rx="1" fill="#92400e" opacity="0.6"/>
+        <polygon points="54,28 46,46 62,46" fill="#22c55e" opacity="0.6"/>
+        <rect x="51" y="46" width="5" height="8" rx="1" fill="#92400e" opacity="0.6"/>
+        <!-- Ground -->
+        <ellipse cx="36" cy="58" rx="28" ry="4" fill="rgba(74,222,128,0.15)"/>
+      </svg>
+    </div>
+    <div class="tag">Data Infographic 2024</div>
+    <h1>The Global Wood Industry</h1>
+    <p class="subtitle">From Forest to Furniture — A comprehensive look at the world's timber trade, production chains, top players, and sustainable challenges shaping the ~$600B global industry.</p>
+    <div style="display:flex;justify-content:center;gap:30px;margin-top:24px;flex-wrap:wrap;">
+      <div style="font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" stroke="#4ade80" stroke-width="1.5" fill="none"/><path d="M7 3v4l2.5 2.5" stroke="#4ade80" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
+        Updated 2024
+      </div>
+      <div style="font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L9 5H13L10 8L11 12L7 10L3 12L4 8L1 5H5Z" stroke="#f59e0b" stroke-width="1.2" fill="none"/></svg>
+        5 Data Sections
+      </div>
+      <div style="font-size:12px;color:var(--text3);display:flex;align-items:center;gap:6px;">
+        <svg width="14" height="14" viewBox="0 0 14 14"><rect x="1" y="1" width="12" height="12" rx="2" stroke="#22d3ee" stroke-width="1.2" fill="none"/><path d="M4 7h6M4 4.5h3M4 9.5h4.5" stroke="#22d3ee" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+        Multiple Sources
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- HERO STATS ROW -->
+  <div class="col-12 section-label">
+    <span class="sl-num">01</span>
+    <span class="sl-title">Industry at a Glance</span>
+    <div class="sl-line"></div>
+  </div>
+
+  <!-- Stat 1 -->
+  <div class="card col-3 hero-stat">
+    <div style="margin-bottom:10px;">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto;display:block;">
+        <circle cx="20" cy="20" r="20" fill="rgba(74,222,128,0.1)"/>
+        <path d="M20 8 L12 22 H28 Z" fill="#4ade80" opacity="0.9"/>
+        <path d="M20 14 L11 26 H29 Z" fill="#22c55e" opacity="0.75"/>
+        <rect x="17" y="26" width="6" height="8" rx="1" fill="#92400e"/>
+      </svg>
+    </div>
+    <div class="num" style="color: var(--accent1);">$637B</div>
+    <div class="label">Global Wood & Timber Market Value (2023)</div>
+    <div class="change change-up">▲ 4.2% YoY</div>
+  </div>
+
+  <!-- Stat 2 -->
+  <div class="card col-3 hero-stat">
+    <div style="margin-bottom:10px;">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto;display:block;">
+        <circle cx="20" cy="20" r="20" fill="rgba(34,211,238,0.1)"/>
+        <rect x="8" y="22" width="6" height="12" rx="1" fill="#22d3ee" opacity="0.7"/>
+        <rect x="17" y="16" width="6" height="18" rx="1" fill="#22d3ee" opacity="0.85"/>
+        <rect x="26" y="10" width="6" height="24" rx="1" fill="#22d3ee"/>
+      </svg>
+    </div>
+    <div class="num" style="color: var(--accent2);">4.1B m³</div>
+    <div class="label">Annual Roundwood Production Worldwide</div>
+    <div class="change change-up">▲ 1.8% YoY</div>
+  </div>
+
+  <!-- Stat 3 -->
+  <div class="card col-3 hero-stat">
+    <div style="margin-bottom:10px;">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto;display:block;">
+        <circle cx="20" cy="20" r="20" fill="rgba(245,158,11,0.1)"/>
+        <path d="M10 30 Q15 10 20 20 Q25 30 30 12" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <circle cx="10" cy="30" r="2.5" fill="#f59e0b"/>
+        <circle cx="20" cy="20" r="2.5" fill="#f59e0b"/>
+        <circle cx="30" cy="12" r="2.5" fill="#f59e0b"/>
+      </svg>
+    </div>
+    <div class="num" style="color: var(--accent3);">54M</div>
+    <div class="label">Workers Employed in Forest-Related Industries</div>
+    <div class="change change-down">▼ 2.1% YoY</div>
+  </div>
+
+  <!-- Stat 4 -->
+  <div class="card col-3 hero-stat">
+    <div style="margin-bottom:10px;">
+      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin:0 auto;display:block;">
+        <circle cx="20" cy="20" r="20" fill="rgba(167,139,250,0.1)"/>
+        <circle cx="20" cy="20" r="10" stroke="#a78bfa" stroke-width="2" fill="none"/>
+        <circle cx="20" cy="20" r="5" fill="#a78bfa" opacity="0.5"/>
+        <path d="M20 8 L20 4 M32 20 L36 20 M20 32 L20 36 M8 20 L4 20" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="num" style="color: var(--accent4);">31%</div>
+    <div class="label">Earth's Land Covered by Forests (4B Hectares)</div>
+    <div class="change change-down">▼ 0.3% YoY</div>
+  </div>
+
+  <!-- Extra stats strip -->
+  <div class="card col-12" style="padding: 20px 28px;">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;text-align:center;">
+      <div style="padding:12px 16px;border-right:1px solid var(--border);">
+        <div style="font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#4ade80;">$280B</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Furniture Market (2023)</div>
+      </div>
+      <div style="padding:12px 16px;border-right:1px solid var(--border);">
+        <div style="font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;">$160B</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Paper & Pulp Sector</div>
+      </div>
+      <div style="padding:12px 16px;border-right:1px solid var(--border);">
+        <div style="font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f59e0b;">15B Trees</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Felled Annually Worldwide</div>
+      </div>
+      <div style="padding:12px 16px;border-right:1px solid var(--border);">
+        <div style="font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#a78bfa;">China #1</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Largest Furniture Exporter</div>
+      </div>
+      <div style="padding:12px 16px;">
+        <div style="font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f87171;">10M ha</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:4px;">Deforested Annually</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TOP PRODUCERS -->
+  <div class="col-12 section-label" style="margin-top:12px;">
+    <span class="sl-num">02</span>
+    <span class="sl-title">Top Timber Producers & Exporters</span>
+    <div class="sl-line"></div>
+  </div>
+
+  <!-- Vertical Bar: Top Roundwood Producers -->
+  <div class="card col-8">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(74,222,128,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="2" y="10" width="3" height="8" rx="1" fill="#4ade80" opacity="0.6"/>
+          <rect x="7" y="6" width="3" height="12" rx="1" fill="#4ade80" opacity="0.8"/>
+          <rect x="12" y="2" width="3" height="16" rx="1" fill="#4ade80"/>
+          <rect x="17" y="8" width="3" height="10" rx="1" fill="#4ade80" opacity="0.7"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Roundwood Production by Country</div>
+        <div class="card-sub">Million cubic meters · 2022 estimates</div>
+      </div>
+    </div>
+
+    <!-- Y axis labels and bars -->
+    <div style="display:flex;gap:0;">
+      <!-- Y labels -->
+      <div style="display:flex;flex-direction:column;justify-content:space-between;height:230px;padding-bottom:36px;margin-right:8px;text-align:right;flex-shrink:0;">
+        <div style="font-size:9px;color:var(--text3);">800</div>
+        <div style="font-size:9px;color:var(--text3);">600</div>
+        <div style="font-size:9px;color:var(--text3);">400</div>
+        <div style="font-size:9px;color:var(--text3);">200</div>
+        <div style="font-size:9px;color:var(--text3);">0</div>
+      </div>
+
+      <!-- Grid + bars -->
+      <div style="flex:1;position:relative;">
+        <!-- Horizontal grid lines -->
+        <div style="position:absolute;top:0;left:0;right:0;height:194px;">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:rgba(42,51,80,0.6);"></div>
+          <div style="position:absolute;top:25%;left:0;right:0;height:1px;background:rgba(42,51,80,0.4);"></div>
+          <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(42,51,80,0.4);"></div>
+          <div style="position:absolute;top:75%;left:0;right:0;height:1px;background:rgba(42,51,80,0.4);"></div>
+          <div style="position:absolute;top:100%;left:0;right:0;height:1px;background:rgba(42,51,80,0.6);"></div>
+        </div>
+
+        <div style="display:flex;align-items:flex-end;height:230px;gap:6px;padding-bottom:36px;">
+          <!-- USA: 467 Mm³ → 58% of 800 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#4ade80;">467</div>
+            <div style="width:100%;height:113px;background:linear-gradient(180deg,#4ade80,#22c55e);border-radius:4px 4px 0 0;" data-tip="USA: 467 Mm³"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">USA</div>
+          </div>
+          <!-- India: 352 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#22d3ee;">352</div>
+            <div style="width:100%;height:85px;background:linear-gradient(180deg,#22d3ee,#0891b2);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">India</div>
+          </div>
+          <!-- China: 338 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#22d3ee;">338</div>
+            <div style="width:100%;height:82px;background:linear-gradient(180deg,#22d3ee,#0891b2);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">China</div>
+          </div>
+          <!-- Brazil: 298 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#f59e0b;">298</div>
+            <div style="width:100%;height:72px;background:linear-gradient(180deg,#f59e0b,#d97706);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">Brazil</div>
+          </div>
+          <!-- Canada: 196 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#a78bfa;">196</div>
+            <div style="width:100%;height:47px;background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">Canada</div>
+          </div>
+          <!-- Russia: 192 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#a78bfa;">192</div>
+            <div style="width:100%;height:46px;background:linear-gradient(180deg,#a78bfa,#7c3aed);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">Russia</div>
+          </div>
+          <!-- DR Congo: 102 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#f87171;">102</div>
+            <div style="width:100%;height:25px;background:linear-gradient(180deg,#f87171,#dc2626);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);white-space:nowrap;">D.R.Congo</div>
+          </div>
+          <!-- Ethiopia: 98 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#f87171;">98</div>
+            <div style="width:100%;height:24px;background:linear-gradient(180deg,#f87171,#dc2626);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">Ethiopia</div>
+          </div>
+          <!-- Sweden: 74 -->
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;position:relative;">
+            <div style="font-size:9px;font-weight:700;color:#34d399;">74</div>
+            <div style="width:100%;height:18px;background:linear-gradient(180deg,#34d399,#10b981);border-radius:4px 4px 0 0;"></div>
+            <div style="position:absolute;bottom:2px;font-size:9px;color:var(--text3);">Sweden</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="insight-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#4ade80" stroke-width="1.2"/><path d="M8 5v3.5L10 10" stroke="#4ade80" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </div>
+      <div class="insight-text">
+        <strong>The USA leads in industrial roundwood</strong> at 467 Mm³, while India and developing nations predominantly use wood as fuelwood (~53% of global roundwood). China's rapid industrial growth makes it a top consumer despite lower domestic production.
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Exporters HBAR -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(34,211,238,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M3 10 H17 M13 6 L17 10 L13 14" stroke="#22d3ee" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 6 H9 M3 14 H9" stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Top Sawnwood Exporters</div>
+        <div class="card-sub">Share of global exports · 2022</div>
+      </div>
+    </div>
+    <div class="hbar-list">
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">1</span> Russia</div>
+          <div class="hbar-value">23.8%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:100%;background:linear-gradient(90deg,#4ade80,#22c55e);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">2</span> Canada</div>
+          <div class="hbar-value">18.2%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:76%;background:linear-gradient(90deg,#22d3ee,#0891b2);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">3</span> Sweden</div>
+          <div class="hbar-value">11.5%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:48%;background:linear-gradient(90deg,#a78bfa,#7c3aed);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">4</span> Germany</div>
+          <div class="hbar-value">8.9%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:37%;background:linear-gradient(90deg,#f59e0b,#d97706);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">5</span> Finland</div>
+          <div class="hbar-value">7.4%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:31%;background:linear-gradient(90deg,#f59e0b,#d97706);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">6</span> Austria</div>
+          <div class="hbar-value">6.1%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:26%;background:linear-gradient(90deg,#34d399,#10b981);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">7</span> USA</div>
+          <div class="hbar-value">5.2%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:22%;background:linear-gradient(90deg,#34d399,#10b981);"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name"><span class="rank-badge">8</span> Others</div>
+          <div class="hbar-value">18.9%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:79%;background:linear-gradient(90deg,#64748b,#475569);"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:var(--surface2);border-radius:8px;padding:12px;border:1px solid var(--border);">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Global Export Value</div>
+      <div style="font-size:24px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;">$32.4B</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">Total sawnwood trade value (2022)</div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: VALUE CHAIN + DONUT -->
+  <div class="col-12 section-label" style="margin-top:12px;">
+    <span class="sl-num">03</span>
+    <span class="sl-title">Wood Use & Value Distribution</span>
+    <div class="sl-line"></div>
+  </div>
+
+  <!-- Donut: Wood Use -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(167,139,250,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="7" stroke="#a78bfa" stroke-width="2" fill="none"/>
+          <circle cx="10" cy="10" r="3.5" fill="rgba(167,139,250,0.3)" stroke="#a78bfa" stroke-width="1"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Global Wood Use by Sector</div>
+        <div class="card-sub">Percentage share · 2022</div>
+      </div>
+    </div>
+    <div class="donut-wrap">
+      <div class="donut-svg-wrap">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <!-- Fuelwood: 53% → 191.88deg stroke -->
+          <!-- Industrial Roundwood: 47% -->
+          <!-- Of Industrial: Construction 35%, Paper/Pulp 28%, Panels 18%, Furniture 12%, Other 7% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="var(--surface3)" stroke-width="22"/>
+          <!-- Segment 1: Fuelwood 53% = 188.28 of 376.56 circumference (r=60, C=377) -->
+          <!-- Fuelwood: 53% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#4ade80" stroke-width="22"
+                  stroke-dasharray="199.6 377" stroke-dashoffset="94.25" transform="rotate(-90 80 80)"/>
+          <!-- Industrial Sawnwood: 18% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#22d3ee" stroke-width="22"
+                  stroke-dasharray="67.86 377" stroke-dashoffset="-105.35" transform="rotate(-90 80 80)"/>
+          <!-- Paper/Pulp: 15% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#f59e0b" stroke-width="22"
+                  stroke-dasharray="56.55 377" stroke-dashoffset="-173.21" transform="rotate(-90 80 80)"/>
+          <!-- Wood Panels: 8% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#a78bfa" stroke-width="22"
+                  stroke-dasharray="30.16 377" stroke-dashoffset="-229.76" transform="rotate(-90 80 80)"/>
+          <!-- Other/Furniture: 6% -->
+          <circle cx="80" cy="80" r="60" fill="none" stroke="#f87171" stroke-width="22"
+                  stroke-dasharray="22.62 377" stroke-dashoffset="-259.92" transform="rotate(-90 80 80)"/>
+          <!-- Center hole -->
+          <circle cx="80" cy="80" r="49" fill="var(--surface)"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-center-num" style="color:var(--accent1);">4.1B</div>
+          <div class="donut-center-label">m³/year</div>
+        </div>
+      </div>
+      <div class="legend-list">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#4ade80;"></div>
+          <div class="legend-text">Fuelwood</div>
+          <div class="legend-pct">53%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#22d3ee;"></div>
+          <div class="legend-text">Sawnwood</div>
+          <div class="legend-pct">18%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f59e0b;"></div>
+          <div class="legend-text">Paper & Pulp</div>
+          <div class="legend-pct">15%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#a78bfa;"></div>
+          <div class="legend-text">Wood Panels</div>
+          <div class="legend-pct">8%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f87171;"></div>
+          <div class="legend-text">Furniture/Other</div>
+          <div class="legend-pct">6%</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:8px;">Key Insight</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.5;">Over half of all harvested wood is burned for energy, primarily in developing nations. Industrial uses represent a growing share driven by construction and pulp demand.</div>
+    </div>
+  </div>
+
+  <!-- Value Chain Process Flow -->
+  <div class="card col-8">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(245,158,11,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M2 10 H6 L8 6 L10 14 L12 8 L14 10 H18" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">The Forest-to-Furniture Value Chain</div>
+        <div class="card-sub">Value added at each processing stage</div>
+      </div>
+    </div>
+
+    <!-- Process Steps -->
+    <div style="position:relative;padding:10px 0 20px;">
+      <!-- Connecting line -->
+      <div style="position:absolute;top:46px;left:calc(5.5% + 10px);right:calc(5.5% + 10px);height:2px;background:linear-gradient(90deg,#4ade80,#22d3ee,#f59e0b,#a78bfa,#f87171);opacity:0.4;z-index:0;"></div>
+
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;">
+
+        <!-- Step 1: Forest -->
+        <div style="text-align:center;width:18%;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(74,222,128,0.12);border:2px solid rgba(74,222,128,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <polygon points="14,3 7,16 21,16" fill="#4ade80" opacity="0.85"/>
+              <polygon points="14,8 6,20 22,20" fill="#22c55e" opacity="0.7"/>
+              <rect x="11.5" y="20" width="5" height="6" rx="1" fill="#92400e"/>
+            </svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">Forestry</div>
+          <div style="font-size:9px;color:var(--text3);line-height:1.4;">Standing timber, managed forests</div>
+          <div style="margin-top:8px;background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);border-radius:6px;padding:5px;">
+            <div style="font-size:13px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#4ade80;">~$60</div>
+            <div style="font-size:8px;color:var(--text3);">per m³ log</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="color:var(--text3);font-size:18px;align-self:center;margin-top:-20px;opacity:0.5;">›</div>
+
+        <!-- Step 2: Sawmill -->
+        <div style="text-align:center;width:18%;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(34,211,238,0.12);border:2px solid rgba(34,211,238,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="9" stroke="#22d3ee" stroke-width="1.5" fill="none"/>
+              <circle cx="14" cy="14" r="3" fill="#22d3ee" opacity="0.6"/>
+              <path d="M14 5 L14 2 M14 26 L14 23 M23 14 L26 14 M2 14 L5 14" stroke="#22d3ee" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M20.5 7.5 L22.5 5.5 M7.5 20.5 L5.5 22.5" stroke="#22d3ee" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">Sawmilling</div>
+          <div style="font-size:9px;color:var(--text3);line-height:1.4;">Log processing, debarking, cutting</div>
+          <div style="margin-top:8px;background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);border-radius:6px;padding:5px;">
+            <div style="font-size:13px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;">~$140</div>
+            <div style="font-size:8px;color:var(--text3);">per m³ lumber</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="color:var(--text3);font-size:18px;align-self:center;margin-top:-20px;opacity:0.5;">›</div>
+
+        <!-- Step 3: Processing -->
+        <div style="text-align:center;width:18%;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(245,158,11,0.12);border:2px solid rgba(245,158,11,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="5" y="8" width="18" height="4" rx="1" fill="#f59e0b" opacity="0.8"/>
+              <rect x="5" y="14" width="18" height="4" rx="1" fill="#f59e0b" opacity="0.6"/>
+              <rect x="5" y="20" width="12" height="4" rx="1" fill="#f59e0b" opacity="0.4"/>
+              <circle cx="22" cy="6" r="3" fill="#f59e0b" opacity="0.5"/>
+              <path d="M22 3 L22 9 M19 6 L25 6" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">Processing</div>
+          <div style="font-size:9px;color:var(--text3);line-height:1.4;">Drying, planing, grading, treating</div>
+          <div style="margin-top:8px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.2);border-radius:6px;padding:5px;">
+            <div style="font-size:13px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f59e0b;">~$280</div>
+            <div style="font-size:8px;color:var(--text3);">per m³ processed</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="color:var(--text3);font-size:18px;align-self:center;margin-top:-20px;opacity:0.5;">›</div>
+
+        <!-- Step 4: Manufacturing -->
+        <div style="text-align:center;width:18%;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(167,139,250,0.12);border:2px solid rgba(167,139,250,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <rect x="4" y="14" width="20" height="10" rx="2" fill="none" stroke="#a78bfa" stroke-width="1.5"/>
+              <rect x="8" y="10" width="5" height="4" rx="1" stroke="#a78bfa" stroke-width="1.2" fill="rgba(167,139,250,0.2)"/>
+              <rect x="15" y="8" width="5" height="6" rx="1" stroke="#a78bfa" stroke-width="1.2" fill="rgba(167,139,250,0.2)"/>
+              <path d="M4 24 L6 28 M22 24 L24 28" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">Manufacturing</div>
+          <div style="font-size:9px;color:var(--text3);line-height:1.4;">Furniture, panels, flooring production</div>
+          <div style="margin-top:8px;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);border-radius:6px;padding:5px;">
+            <div style="font-size:13px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#a78bfa;">~$750</div>
+            <div style="font-size:8px;color:var(--text3);">per m³ equiv.</div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="color:var(--text3);font-size:18px;align-self:center;margin-top:-20px;opacity:0.5;">›</div>
+
+        <!-- Step 5: Retail -->
+        <div style="text-align:center;width:18%;">
+          <div style="width:56px;height:56px;border-radius:50%;background:rgba(248,113,113,0.12);border:2px solid rgba(248,113,113,0.4);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <path d="M4 8 H24 L22 18 H6 Z" stroke="#f87171" stroke-width="1.5" fill="rgba(248,113,113,0.1)" stroke-linejoin="round"/>
+              <circle cx="10" cy="22" r="2" fill="#f87171"/>
+              <circle cx="18" cy="22" r="2" fill="#f87171"/>
+              <path d="M4 8 L2 4 H1" stroke="#f87171" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M10 8 L10 4 M14 8 L14 4 M18 8 L18 5" stroke="#f87171" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            </svg>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px;">Retail</div>
+          <div style="font-size:9px;color:var(--text3);line-height:1.4;">Wholesale, showroom, e-commerce</div>
+          <div style="margin-top:8px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);border-radius:6px;padding:5px;">
+            <div style="font-size:13px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f87171;">~$1,600</div>
+            <div style="font-size:8px;color:var(--text3);">per m³ equiv.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Value multiplier bar -->
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-size:12px;color:var(--text2);font-weight:600;">Value Multiplication from Forest → Retail</div>
+        <div style="font-size:18px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f59e0b;">26.7×</div>
+      </div>
+      <div style="display:flex;gap:4px;height:20px;border-radius:6px;overflow:hidden;">
+        <div style="width:3.75%;background:#4ade80;border-radius:2px 0 0 2px;" title="Forestry ~3.75%"></div>
+        <div style="width:5%;background:#22d3ee;" title="Sawmill ~5%"></div>
+        <div style="width:8.75%;background:#f59e0b;" title="Processing ~8.75%"></div>
+        <div style="width:29.4%;background:#a78bfa;" title="Manufacturing ~29.4%"></div>
+        <div style="flex:1;background:linear-gradient(90deg,#f87171,#dc2626);border-radius:0 2px 2px 0;" title="Retail ~53.1%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:5px;">
+        <div style="font-size:9px;color:var(--text3);">Raw Log ($60)</div>
+        <div style="font-size:9px;color:var(--text3);">Retail Product ($1,600)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: MARKET GROWTH LINE CHART -->
+  <div class="col-12 section-label" style="margin-top:12px;">
+    <span class="sl-num">04</span>
+    <span class="sl-title">Market Growth Trends (2015–2024E)</span>
+    <div class="sl-line"></div>
+  </div>
+
+  <!-- Line Chart: Market Growth -->
+  <div class="card col-8">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(245,158,11,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M2 16 L6 10 L10 12 L14 6 L18 4" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M2 16 L6 10 L10 12 L14 6 L18 4 L18 18 L2 18 Z" fill="rgba(245,158,11,0.1)"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Global Wood & Timber Market Size</div>
+        <div class="card-sub">USD Billions · 2015–2024 (Estimated)</div>
+      </div>
+    </div>
+
+    <div style="position:relative;padding-left:36px;">
+      <!-- Y axis labels -->
+      <div style="position:absolute;left:0;top:0;bottom:30px;display:flex;flex-direction:column;justify-content:space-between;">
+        <div style="font-size:9px;color:var(--text3);">750</div>
+        <div style="font-size:9px;color:var(--text3);">650</div>
+        <div style="font-size:9px;color:var(--text3);">550</div>
+        <div style="font-size:9px;color:var(--text3);">450</div>
+        <div style="font-size:9px;color:var(--text3);">350</div>
+      </div>
+
+      <svg width="100%" height="260" viewBox="0 0 720 260" preserveAspectRatio="xMidYMid meet">
+        <!-- Grid lines -->
+        <line x1="0" y1="20" x2="720" y2="20" stroke="rgba(42,51,80,0.5)" stroke-width="1"/>
+        <line x1="0" y1="70" x2="720" y2="70" stroke="rgba(42,51,80,0.4)" stroke-width="1"/>
+        <line x1="0" y1="120" x2="720" y2="120" stroke="rgba(42,51,80,0.4)" stroke-width="1"/>
+        <line x1="0" y1="170" x2="720" y2="170" stroke="rgba(42,51,80,0.4)" stroke-width="1"/>
+        <line x1="0" y1="220" x2="720" y2="220" stroke="rgba(42,51,80,0.5)" stroke-width="1"/>
+
+        <!-- X grid lines (vertical) -->
+        <line x1="80" y1="20" x2="80" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="160" y1="20" x2="160" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="240" y1="20" x2="240" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="320" y1="20" x2="320" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="400" y1="20" x2="400" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="480" y1="20" x2="480" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="560" y1="20" x2="560" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="640" y1="20" x2="640" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="720" y1="20" x2="720" y2="220" stroke="rgba(42,51,80,0.3)" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- Data points mapped: 
+             Y axis: 350=220, 450=170, 550=120, 650=70, 750=20
+             So: value → y = 220 - (value-350)/4
+             2015: 415 → y=204.6
+             2016: 432 → y=202
+             2017: 458 → y=197.5
+             2018: 485 → y=191.25 (wait let me recalculate)
+             Range: 350-750 = 400 units over 200px height (220-20=200)
+             scale = 200/400 = 0.5 px per unit
+             y = 220 - (value - 350) * 0.5
+             2015: 415 → 220 - (415-350)*0.5 = 220-32.5 = 187.5
+             2016: 432 → 220 - (432-350)*0.5 = 220-41 = 179
+             2017: 458 → 220 - (458-350)*0.5 = 220-54 = 166
+             2018: 487 → 220 - (487-350)*0.5 = 220-68.5 = 151.5
+             2019: 505 → 220 - (505-350)*0.5 = 220-77.5 = 142.5
+             2020: 478 → 220 - (478-350)*0.5 = 220-64 = 156 (COVID dip)
+             2021: 555 → 220 - (555-350)*0.5 = 220-102.5 = 117.5
+             2022: 598 → 220 - (598-350)*0.5 = 220-124 = 96
+             2023: 637 → 220 - (637-350)*0.5 = 220-143.5 = 76.5
+             2024E: 668 → 220 - (668-350)*0.5 = 220-159 = 61
+             X positions: evenly from 40 to 720, 9 years = step 85
+             x: 40, 125, 210, 295, 380, 465, 550, 635, 720
+             Wait, 2015-2024 = 10 points, step = (720-0)/9 = 80 
+             x: 0, 80, 160, 240, 320, 400, 480, 560, 640, 720
+        -->
+
+        <!-- Gradient fill area -->
+        <defs>
+          <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02"/>
+          </linearGradient>
+          <linearGradient id="lineGrad2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#22d3ee" stop-opacity="0.02"/>
+          </linearGradient>
+          <!-- Projection dashed after 2023 -->
+        </defs>
+
+        <!-- Fill area (main market) -->
+        <path d="M0,187.5 L80,179 L160,166 L240,151.5 L320,142.5 L400,156 L480,117.5 L560,96 L640,76.5 L720,61 L720,220 L0,220 Z"
+              fill="url(#lineGrad)"/>
+
+        <!-- Furniture sub-market line: 2015:180 2016:192 2017:205 2018:220 2019:231 2020:218 2021:248 2022:264 2023:280 2024E:298
+             y = 220 - (v-350)*0.5 ... wait furniture is smaller, let me use different values 
+             Actually let me place furniture on same axis: 2015:180 is below 350, so let me just offset furniture
+             Let me use a secondary axis conceptually but draw relative:
+             Scale furniture to same range: max ~300, min ~150
+             Use same formula: y = 220 - (v - 150) * (200/(300-150)) = 220 - (v-150)*1.333
+             2015: 180 → 220 - 30*1.333 = 220 - 40 = 180
+             2016: 192 → 220 - 42*1.333 = 220 - 56 = 164
+             2017: 205 → 220 - 55*1.333 = 220 - 73.3 = 146.7
+             2018: 220 → 220 - 70*1.333 = 220 - 93.3 = 126.7
+             2019: 231 → 220 - 81*1.333 = 220 - 108 = 112
+             2020: 218 → 220 - 68*1.333 = 220 - 90.7 = 129.3
+             2021: 248 → 220 - 98*1.333 = 220 - 130.7 = 89.3
+             2022: 264 → 220 - 114*1.333 = 220 - 152 = 68
+             2023: 280 → 220 - 130*1.333 = 220 - 173.3 = 46.7 (a bit high, let me reduce scale)
+        -->
+
+        <!-- Furniture market line (secondary) -->
+        <path d="M0,180 L80,164 L160,146.7 L240,126.7 L320,112 L400,129.3 L480,89.3 L560,68 L640,46.7 L720,30"
+              fill="url(#lineGrad2)" opacity="0.5"/>
+        <path d="M0,180 L80,164 L160,146.7 L240,126.7 L320,112 L400,129.3 L480,89.3 L560,68 L640,46.7 L720,30"
+              stroke="#22d3ee" stroke-width="1.5" fill="none" stroke-dasharray="5,3" opacity="0.6"/>
+
+        <!-- Main market line (solid to 2023, dashed for 2024) -->
+        <path d="M0,187.5 L80,179 L160,166 L240,151.5 L320,142.5 L400,156 L480,117.5 L560,96 L640,76.5"
+              stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Projection 2024 -->
+        <path d="M640,76.5 L720,61"
+              stroke="#f59e0b" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="5,4"/>
+
+        <!-- COVID annotation -->
+        <rect x="376" y="140" width="52" height="22" rx="4" fill="rgba(248,113,113,0.15)" stroke="rgba(248,113,113,0.3)" stroke-width="1"/>
+        <text x="402" y="154" fill="#f87171" font-size="8" text-anchor="middle" font-family="Inter">COVID dip</text>
+
+        <!-- 2024 projection badge -->
+        <rect x="672" y="44" width="46" height="20" rx="4" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+        <text x="695" y="57" fill="#f59e0b" font-size="8" text-anchor="middle" font-family="Inter">2024E</text>
+
+        <!-- Data points -->
+        <circle cx="0" cy="187.5" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="80" cy="179" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="160" cy="166" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="240" cy="151.5" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="320" cy="142.5" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="400" cy="156" r="5" fill="rgba(248,113,113,0.3)" stroke="#f87171" stroke-width="2"/>
+        <circle cx="480" cy="117.5" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="560" cy="96" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="640" cy="76.5" r="5" fill="#f59e0b" stroke="#f59e0b" stroke-width="2"/>
+        <circle cx="720" cy="61" r="4" fill="#0a0d14" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,2"/>
+
+        <!-- Value labels on key points -->
+        <text x="0" y="204" fill="#94a3b8" font-size="8.5" text-anchor="middle" font-family="Inter">$415B</text>
+        <text x="400" y="173" fill="#f87171" font-size="8.5" text-anchor="middle" font-family="Inter">$478B</text>
+        <text x="640" y="93" fill="#f59e0b" font-size="8.5" text-anchor="middle" font-family="Inter">$637B</text>
+        <text x="720" y="78" fill="#f59e0b" font-size="8.5" text-anchor="middle" font-family="Inter">$668B</text>
+
+        <!-- X labels -->
+        <text x="0" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2015</text>
+        <text x="80" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2016</text>
+        <text x="160" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2017</text>
+        <text x="240" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2018</text>
+        <text x="320" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2019</text>
+        <text x="400" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2020</text>
+        <text x="480" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2021</text>
+        <text x="560" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2022</text>
+        <text x="640" y="238" fill="#64748b" font-size="8.5" text-anchor="middle" font-family="Inter">2023</text>
+        <text x="720" y="238" fill="#94a3b8" font-size="8.5" text-anchor="middle" font-family="Inter" font-style="italic">2024E</text>
+      </svg>
+    </div>
+
+    <!-- Legend -->
+    <div style="display:flex;gap:20px;margin-top:12px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:7px;">
+        <div style="width:20px;height:3px;background:#f59e0b;border-radius:2px;"></div>
+        <span style="font-size:11px;color:var(--text2);">Total Wood Market</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;">
+        <div style="width:20px;height:3px;background:#22d3ee;border-radius:2px;opacity:0.7;"></div>
+        <span style="font-size:11px;color:var(--text2);">Furniture Sub-Market</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px;">
+        <div style="width:20px;height:0;border-top:2px dashed #f59e0b;"></div>
+        <span style="font-size:11px;color:var(--text2);">Projection</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAGR Stats + Sub sectors -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(74,222,128,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2 C5.58 2 2 5.58 2 10 C2 14.42 5.58 18 10 18 C14.42 18 18 14.42 18 10" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M18 2 L18 8 L12 8" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 2 L12 8" stroke="#4ade80" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Sector Growth Rates</div>
+        <div class="card-sub">CAGR 2018–2024</div>
+      </div>
+    </div>
+    <div class="hbar-list">
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Mass Timber (CLT/Glulam)</div>
+          <div class="hbar-value" style="color:#4ade80;">+14.2%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:100%;background:linear-gradient(90deg,#4ade80,#22c55e);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Wood Pellets (Bioenergy)</div>
+          <div class="hbar-value" style="color:#4ade80;">+11.7%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:82%;background:linear-gradient(90deg,#4ade80,#22c55e);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Online Furniture Retail</div>
+          <div class="hbar-value" style="color:#22d3ee;">+9.4%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:66%;background:linear-gradient(90deg,#22d3ee,#0891b2);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Engineered Wood Products</div>
+          <div class="hbar-value" style="color:#f59e0b;">+7.8%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:55%;background:linear-gradient(90deg,#f59e0b,#d97706);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Sustainable Certified Wood</div>
+          <div class="hbar-value" style="color:#f59e0b;">+6.2%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:44%;background:linear-gradient(90deg,#f59e0b,#d97706);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Traditional Sawnwood</div>
+          <div class="hbar-value" style="color:#a78bfa;">+3.1%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:22%;background:linear-gradient(90deg,#a78bfa,#7c3aed);height:6px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Newsprint / Print Paper</div>
+          <div class="hbar-value" style="color:#f87171;">-3.8%</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:27%;background:linear-gradient(90deg,#f87171,#dc2626);height:6px;"></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:14px;background:var(--surface2);border-radius:10px;border:1px solid var(--border);">
+      <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Market Forecast 2030</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="text-align:center;">
+          <div style="font-size:20px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#4ade80;">$929B</div>
+          <div style="font-size:9px;color:var(--text3);">Total Market</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:20px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;">+5.4%</div>
+          <div style="font-size:9px;color:var(--text3);">CAGR 2024–30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: SUSTAINABILITY & DEFORESTATION -->
+  <div class="col-12 section-label" style="margin-top:12px;">
+    <span class="sl-num">05</span>
+    <span class="sl-title">Sustainability & Environmental Impact</span>
+    <div class="sl-line"></div>
+  </div>
+
+  <!-- Deforestation stats -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(248,113,113,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2 L18 14 H2 Z" fill="rgba(248,113,113,0.2)" stroke="#f87171" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M10 8 L10 11" stroke="#f87171" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="10" cy="13.5" r="1" fill="#f87171"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Deforestation by Driver</div>
+        <div class="card-sub">Share of annual forest loss · Global</div>
+      </div>
+    </div>
+
+    <!-- Donut 2 -->
+    <div class="donut-wrap">
+      <div class="donut-svg-wrap">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="52" fill="none" stroke="var(--surface3)" stroke-width="20"/>
+          <!-- Agriculture: 46% = 0.46 * 2π * 52 = 150.5 -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#f87171" stroke-width="20"
+                  stroke-dasharray="150.5 326.7" stroke-dashoffset="81.7" transform="rotate(-90 70 70)"/>
+          <!-- Livestock: 27% = 88.2 -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#f59e0b" stroke-width="20"
+                  stroke-dasharray="88.2 326.7" stroke-dashoffset="-68.8" transform="rotate(-90 70 70)"/>
+          <!-- Logging: 14% = 45.7 -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#22d3ee" stroke-width="20"
+                  stroke-dasharray="45.7 326.7" stroke-dashoffset="-157" transform="rotate(-90 70 70)"/>
+          <!-- Wildfire: 8% = 26.1 -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#a78bfa" stroke-width="20"
+                  stroke-dasharray="26.1 326.7" stroke-dashoffset="-202.7" transform="rotate(-90 70 70)"/>
+          <!-- Mining/Other: 5% = 16.3 -->
+          <circle cx="70" cy="70" r="52" fill="none" stroke="#4ade80" stroke-width="20"
+                  stroke-dasharray="16.3 326.7" stroke-dashoffset="-228.8" transform="rotate(-90 70 70)"/>
+          <circle cx="70" cy="70" r="42" fill="var(--surface)"/>
+        </svg>
+        <div class="donut-center">
+          <div class="donut-center-num" style="color:#f87171;font-size:18px;">10M</div>
+          <div class="donut-center-label">ha/year</div>
+        </div>
+      </div>
+      <div class="legend-list">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f87171;"></div>
+          <div class="legend-text">Agriculture</div>
+          <div class="legend-pct">46%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#f59e0b;"></div>
+          <div class="legend-text">Livestock</div>
+          <div class="legend-pct">27%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#22d3ee;"></div>
+          <div class="legend-text">Logging</div>
+          <div class="legend-pct">14%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#a78bfa;"></div>
+          <div class="legend-text">Wildfire</div>
+          <div class="legend-pct">8%</div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#4ade80;"></div>
+          <div class="legend-text">Mining/Infra</div>
+          <div class="legend-pct">5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <!-- 3 mini facts -->
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.15);border-radius:8px;">
+          <span style="font-size:11px;color:var(--text2);">Trees lost per minute</span>
+          <span style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f87171;">28,000</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(74,222,128,0.06);border:1px solid rgba(74,222,128,0.15);border-radius:8px;">
+          <span style="font-size:11px;color:var(--text2);">FSC-certified forest area</span>
+          <span style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#4ade80;">220M ha</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(34,211,238,0.06);border:1px solid rgba(34,211,238,0.15);border-radius:8px;">
+          <span style="font-size:11px;color:var(--text2);">Trees replanted annually</span>
+          <span style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;">10B+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forest Cover by Region HBAR -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(74,222,128,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <rect x="1" y="13" width="18" height="2" rx="1" fill="#4ade80" opacity="0.4"/>
+          <path d="M4 13 L4 6 L7 10 L10 3 L13 10 L16 6 L16 13" stroke="#4ade80" stroke-width="1.4" stroke-linejoin="round" fill="rgba(74,222,128,0.15)"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Forest Cover by Region</div>
+        <div class="card-sub">Million hectares · 2022</div>
+      </div>
+    </div>
+    <div class="hbar-list">
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">South America</div>
+          <div class="hbar-value">834 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:100%;background:linear-gradient(90deg,#4ade80,#22c55e);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">N. &amp; C. America</div>
+          <div class="hbar-value">751 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:90%;background:linear-gradient(90deg,#22d3ee,#0891b2);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Russia &amp; N. Asia</div>
+          <div class="hbar-value">816 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:98%;background:linear-gradient(90deg,#a78bfa,#7c3aed);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Africa</div>
+          <div class="hbar-value">637 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:76%;background:linear-gradient(90deg,#f59e0b,#d97706);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Asia (excl. Russia)</div>
+          <div class="hbar-value">569 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:68%;background:linear-gradient(90deg,#f59e0b,#d97706);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Europe</div>
+          <div class="hbar-value">227 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:27%;background:linear-gradient(90deg,#34d399,#10b981);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+      <div class="hbar-item">
+        <div class="hbar-meta">
+          <div class="hbar-name">Oceania</div>
+          <div class="hbar-value">174 Mha</div>
+        </div>
+        <div class="hbar-track">
+          <div class="hbar-fill" style="width:21%;background:linear-gradient(90deg,#34d399,#10b981);height:10px;border-radius:50px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CO2 stat -->
+    <div style="margin-top:16px;padding:14px;background:linear-gradient(135deg,rgba(74,222,128,0.06),rgba(34,211,238,0.06));border:1px solid rgba(74,222,128,0.2);border-radius:10px;text-align:center;">
+      <div style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Carbon Stored in World's Forests</div>
+      <div style="font-size:32px;font-weight:900;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,#4ade80,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">861 GtC</div>
+      <div style="font-size:11px;color:var(--text3);margin-top:2px;">Gigatons of Carbon — 2× atmospheric CO₂</div>
+    </div>
+  </div>
+
+  <!-- Certification & Sustainability Progress -->
+  <div class="card col-4">
+    <div class="card-header">
+      <div class="card-icon" style="background:rgba(34,211,238,0.12);">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 2 L12.5 7.5 H18 L13.5 11 L15.5 17 L10 13.5 L4.5 17 L6.5 11 L2 7.5 H7.5 Z" stroke="#22d3ee" stroke-width="1.4" fill="rgba(34,211,238,0.1)" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="card-title">Sustainability Metrics</div>
+        <div class="card-sub">Forest certification &amp; ESG goals</div>
+      </div>
+    </div>
+
+    <!-- SVG Illustration: Sustainability wheel -->
+    <div style="display:flex;justify-content:center;margin-bottom:16px;">
+      <svg width="180" height="160" viewBox="0 0 180 160">
+        <!-- Central circle -->
+        <circle cx="90" cy="80" r="30" fill="rgba(74,222,128,0.1)" stroke="#4ade80" stroke-width="1.5"/>
+        <text x="90" y="76" fill="#4ade80" font-size="9" text-anchor="middle" font-family="Inter" font-weight="700">SUSTAIN</text>
+        <text x="90" y="88" fill="#4ade80" font-size="9" text-anchor="middle" font-family="Inter" font-weight="700">ABILITY</text>
+
+        <!-- Surrounding nodes -->
+        <!-- FSC -->
+        <circle cx="90" cy="22" r="18" fill="rgba(74,222,128,0.08)" stroke="rgba(74,222,128,0.3)" stroke-width="1"/>
+        <text x="90" y="18" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="Inter">FSC</text>
+        <text x="90" y="28" fill="#4ade80" font-size="8.5" text-anchor="middle" font-family="Inter" font-weight="700">220Mha</text>
+        <line x1="90" y1="40" x2="90" y2="50" stroke="rgba(74,222,128,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- PEFC -->
+        <circle cx="162" cy="55" r="18" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.3)" stroke-width="1"/>
+        <text x="162" y="51" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="Inter">PEFC</text>
+        <text x="162" y="61" fill="#22d3ee" font-size="8.5" text-anchor="middle" font-family="Inter" font-weight="700">320Mha</text>
+        <line x1="147" y1="62" x2="119" y2="70" stroke="rgba(34,211,238,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- Carbon -->
+        <circle cx="148" cy="128" r="18" fill="rgba(245,158,11,0.08)" stroke="rgba(245,158,11,0.3)" stroke-width="1"/>
+        <text x="148" y="124" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="Inter">Carbon</text>
+        <text x="148" y="134" fill="#f59e0b" font-size="8.5" text-anchor="middle" font-family="Inter" font-weight="700">Credits</text>
+        <line x1="132" y1="118" x2="112" y2="102" stroke="rgba(245,158,11,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- Reforestation -->
+        <circle cx="32" cy="128" r="18" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.3)" stroke-width="1"/>
+        <text x="32" y="124" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="Inter">Refore-</text>
+        <text x="32" y="134" fill="#a78bfa" font-size="8.5" text-anchor="middle" font-family="Inter" font-weight="700">station</text>
+        <line x1="48" y1="118" x2="68" y2="102" stroke="rgba(167,139,250,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+
+        <!-- Biodiversity -->
+        <circle cx="18" cy="55" r="18" fill="rgba(248,113,113,0.08)" stroke="rgba(248,113,113,0.3)" stroke-width="1"/>
+        <text x="18" y="51" fill="#94a3b8" font-size="7.5" text-anchor="middle" font-family="Inter">Biodiv.</text>
+        <text x="18" y="61" fill="#f87171" font-size="8.5" text-anchor="middle" font-family="Inter" font-weight="700">Protect</text>
+        <line x1="33" y1="62" x2="61" y2="70" stroke="rgba(248,113,113,0.3)" stroke-width="1" stroke-dasharray="3,2"/>
+      </svg>
+    </div>
+
+    <!-- Progress bars for certification coverage -->
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;color:var(--text2);">FSC-Certified Forests</span>
+          <span style="font-size:11px;font-weight:700;color:#4ade80;">5.5%</span>
+        </div>
+        <div style="height:6px;background:var(--surface3);border-radius:50px;overflow:hidden;">
+          <div style="width:5.5%;height:100%;background:linear-gradient(90deg,#4ade80,#22c55e);border-radius:50px;"></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;color:var(--text2);">PEFC-Certified Forests</span>
+          <span style="font-size:11px;font-weight:700;color:#22d3ee;">8.0%</span>
+        </div>
+        <div style="height:6px;background:var(--surface3);border-radius:50px;overflow:hidden;">
+          <div style="width:8%;height:100%;background:linear-gradient(90deg,#22d3ee,#0891b2);border-radius:50px;"></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;color:var(--text2);">Total Certified (combined)</span>
+          <span style="font-size:11px;font-weight:700;color:#f59e0b;">13.5%</span>
+        </div>
+        <div style="height:6px;background:var(--surface3);border-radius:50px;overflow:hidden;">
+          <div style="width:13.5%;height:100%;background:linear-gradient(90deg,#f59e0b,#d97706);border-radius:50px;"></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+          <span style="font-size:11px;color:var(--text2);">2030 Zero-Deforestation Target</span>
+          <span style="font-size:11px;font-weight:700;color:#a78bfa;">42%</span>
+        </div>
+        <div style="height:6px;background:var(--surface3);border-radius:50px;overflow:hidden;">
+          <div style="width:42%;height:100%;background:linear-gradient(90deg,#a78bfa,#7c3aed);border-radius:50px;"></div>
+        </div>
+        <div style="font-size:9px;color:var(--text3);margin-top:3px;">Progress toward 145-country pledge (Glasgow 2021)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Insight Banner -->
+  <div class="card col-12" style="background:linear-gradient(135deg,rgba(74,222,128,0.05) 0%,rgba(34,211,238,0.05) 50%,rgba(167,139,250,0.05) 100%);border-color:rgba(74,222,128,0.15);">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;">
+      <div style="padding:8px 0;">
+        <div style="display:flex;justify-content:center;margin-bottom:10px;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="18" fill="rgba(74,222,128,0.1)"/>
+            <path d="M18 8 L12 19 H24 Z" fill="#4ade80" opacity="0.8"/>
+            <path d="M18 13 L11 22 H25 Z" fill="#22c55e" opacity="0.65"/>
+            <rect x="15.5" y="22" width="5" height="6" rx="1" fill="#92400e"/>
+          </svg>
+        </div>
+        <div style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#4ade80;margin-bottom:4px;">Mass Timber Rising</div>
+        <div style="font-size:11px;color:var(--text3);line-height:1.5;">Cross-laminated timber (CLT) is projected to replace steel in mid-rise buildings by 2030, reducing construction emissions by up to 75%.</div>
+      </div>
+      <div style="padding:8px 0;border-left:1px solid var(--border);">
+        <div style="display:flex;justify-content:center;margin-bottom:10px;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="18" fill="rgba(34,211,238,0.1)"/>
+            <circle cx="18" cy="18" r="8" stroke="#22d3ee" stroke-width="1.5" fill="none"/>
+            <path d="M9 18 Q13 10 18 18 Q23 26 27 18" stroke="#22d3ee" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+        <div style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#22d3ee;margin-bottom:4px;">Digital Marketplace</div>
+        <div style="font-size:11px;color:var(--text3);line-height:1.5;">Online wood & lumber trading platforms grew 42% post-pandemic, with B2B digital sales expected to reach $18B by 2027.</div>
+      </div>
+      <div style="padding:8px 0;border-left:1px solid var(--border);">
+        <div style="display:flex;justify-content:center;margin-bottom:10px;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="18" fill="rgba(245,158,11,0.1)"/>
+            <path d="M12 24 L18 12 L24 24" stroke="#f59e0b" stroke-width="1.5" stroke-linejoin="round" fill="rgba(245,158,11,0.1)"/>
+            <path d="M14 20 H22" stroke="#f59e0b" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#f59e0b;margin-bottom:4px;">Bioenergy Demand</div>
+        <div style="font-size:11px;color:var(--text3);line-height:1.5;">Wood pellet production has tripled since 2010, reaching 36 million tonnes in 2023, driven by EU renewable energy mandates.</div>
+      </div>
+      <div style="padding:8px 0;border-left:1px solid var(--border);">
+        <div style="display:flex;justify-content:center;margin-bottom:10px;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="18" fill="rgba(167,139,250,0.1)"/>
+            <path d="M10 26 C10 18 14 14 18 10 C22 14 26 18 26 26" stroke="#a78bfa" stroke-width="1.5" fill="rgba(167,139,250,0.1)"/>
+            <path d="M18 26 L18 16" stroke="#a78bfa" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M15 20 L18 16 L21 20" stroke="#a78bfa" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div style="font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#a78bfa;margin-bottom:4px;">Net Zero Forests</div>
+        <div style="font-size:11px;color:var(--text3);line-height:1.5;">145 nations pledged to end deforestation by 2030 at COP26. Managed forests currently sequester 2.6 billion tonnes of CO₂ annually.</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-title">Data Sources & References</div>
+  <div class="footer-sources">
+    <div class="footer-source">
+      <span>FAO FAOSTAT</span> — Global Forest Resources Assessment 2020 &amp; Forestry Production &amp; Trade Data 2022–2023
+    </div>
+    <div class="footer-source">
+      <span>UN Food &amp; Agriculture Organization</span> — The State of the World's Forests (SOFO) 2022
+    </div>
+    <div class="footer-source">
+      <span>Statista</span> — Global Timber &amp; Furniture Market Reports 2023–2024
+    </div>
+    <div class="footer-source">
+      <span>World Bank</span> — Forest Area Data &amp; Employment in Forestry Sector
+    </div>
+    <div class="footer-source">
+      <span>Forest Stewardship Council (FSC)</span> — Annual Report 2023: Certified Forest Area
+    </div>
+    <div class="footer-source">
+      <span>PEFC International</span> — Programme for the Endorsement of Forest Certification 2023 Data
+    </div>
+    <div class="footer-source">
+      <span>IEA</span> — World Energy Outlook 2023: Bioenergy &amp; Wood Pellet Statistics
+    </div>
+    <div class="footer-source">
+      <span>McKinsey &amp; Company</span> — The Future of Mass Timber Construction Report 2023
+    </div>
+  </div>
+  <div class="footer-copy">Infographic compiled from publicly available institutional data. All figures are approximate. © 2024 Wood Industry Data Report. For educational purposes only.</div>
+</footer>
+
+</body>
+</html>
